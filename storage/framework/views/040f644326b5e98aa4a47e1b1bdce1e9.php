@@ -1,0 +1,466 @@
+<?php $__env->startSection('page-title'); ?>
+   <?php echo e(__('Create Leads')); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('css-page'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/summernote/summernote-bs4.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/plugins/dropzone.min.css')); ?>">
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('breadcrumb'); ?>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('dashboard')); ?>"><?php echo e(__('Dashboard')); ?></a></li>
+    <li class="breadcrumb-item"><a href="<?php echo e(route('leads.list')); ?>"><?php echo e(__('Lead')); ?></a></li>
+    <li class="breadcrumb-item"> <?php echo e(__('Create Leads')); ?> </li>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php echo e(Form::open(array('url' => 'leads', 'id' => 'create_lead'))); ?>
+
+
+    
+    <?php
+        $plan= \App\Models\Utility::getChatGPTSettings();
+         $products = \App\Models\ProductService::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
+         $sources = \App\Models\Source::get()->pluck('name', 'id');
+         $stages = \App\Models\LeadStage::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
+         $designations = \App\Models\Designation::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
+         $departments = \App\Models\Department::where('created_by', '=', \Auth::user()->ownerId())->get()->pluck('name', 'id');
+         $types = [
+         'Product Inquiry',
+         'Request for Information'
+         ]
+    ?>
+
+    
+ <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8" style="padding:15px;">
+                <h6 class="sub-title"></h6>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-4" style="margin-top: -52px;">
+                 <span style="float: inline-end;"><input type="submit" value="<?php echo e(__('Save')); ?>" title="<?php echo e(__('Create Lead')); ?>" class="btn-sm custom-file-uploadss" style="border: none;"></span>
+                </div>
+            </div>    
+<div class="row">
+    
+    <div class="card">
+        <div class="card-body">
+           <h6 class="sub-title"><?php echo e(__('Organization')); ?></h6>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="form-group">
+                        <?php echo e(Form::label('industry',__('Customer'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                        <?php echo e(Form::text('industry',null,array('class'=>'form-control','required'=>'required' ,'placeholder'=>_('Enter Name')))); ?>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="form-group">
+                        <?php echo e(Form::label('name',__('Sector'),array('class'=>'form-label'))); ?>
+
+                        <?php echo e(Form::text('sector',null,array('class'=>'form-control','placeholder'=>_('Enter Sector Name')))); ?>
+
+                    </div>
+                </div>
+               
+               
+                 <div class="col-lg-4 col-md-4 col-sm-8">
+                    <div class="form-group">
+                        <?php echo e(Form::label('products', __('Product'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                    <?php echo e(Form::select('products[]', $products,false, array('class' => 'form-control select2','id'=>'choices-multiple3','multiple'=>'','required'=>'required', 'placeholder' => __('Select Products')))); ?>
+
+        
+                    </div>
+                </div>
+               
+           
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="form-group">
+                        <?php echo e(Form::label('gst_number',__('Gst Number'),['class'=>'form-label'])); ?>
+
+                        <?php echo e(Form::text('gst_number',null,array('class'=>'form-control' , 'placeholder' => __('Enter Gst Number')))); ?>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="form-group">
+                        <?php echo e(Form::label('quantity',__('Quantity'),['class'=>'form-label'])); ?>
+
+                        <?php echo e(Form::number('quantity',null,array('class'=>'form-control' , 'placeholder'=>__('Enter quantity')))); ?>
+
+        
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>  
+    <div class="row">
+         <div class="col-md-8">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="sub-title"><?php echo e(__('Contact Person Information')); ?></h6>
+           
+               
+                <div class="col-sm-6" style="float: inline-end;">
+                    <div class="form-group">
+                        <select style="padding:10px;margin-left: 5px;position:absolute;margin-top: 30px;background: white;border: 0px;" name="prefix">
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Ms.">Ms.</option>
+                            </select>
+                        <?php echo e(Form::label('billing_name',__('Name'),array('class'=>'','class'=>'form-label'))); ?><span class="text-danger">*</span>
+                        <?php echo e(Form::text('billing_name',null,array('class'=>'form-control' , 'placeholder'=>__('Enter Name'),'required'=>'required', 'style' => 'padding-left: 90px'))); ?>
+
+                    </div>
+                </div>
+                <div class="col-5 form-group">
+                    <?php echo e(Form::label('email', __('Email'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                    <?php echo e(Form::text('email', null, array('class' => 'form-control','required'=>'required' , 'placeholder' => __('Enter email')))); ?>
+
+                </div>
+                <div class="col-sm-6" style="float: inline-end;">
+                    <div class="form-group">
+                        <?php echo e(Form::label('billing_phone',__('Phone'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                        <?php echo e(Form::text('phone',null,array('class'=>'form-control' , 'id' => 'phone', 'placeholder'=>__('Enter Phone'),'required'=>'required'))); ?>
+
+                    </div>
+                </div>
+           
+               
+                <div class="col-sm-6">
+                    <div class="form-group">
+                       <?php echo Form::label('gender', __('Gender'), ['class' => 'form-label' , 'required' => 'required' ]); ?><span class="text-danger">*</span>
+                        <div class="d-flex radio-check">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" id="g_male" value="Male" name="billing_gender"
+                                                            class="form-check-input" checked>
+                                                        <label class="form-check-label " for="g_male"><?php echo e(__('Male')); ?></label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio ms-4 custom-control-inline">
+                                                        <input type="radio" id="g_female" value="Female" name="billing_gender"
+                                                            class="form-check-input">
+                                                        <label class="form-check-label "
+                                                            for="g_female"><?php echo e(__('Female')); ?></label>
+                                                    </div>
+                                                </div>
+        
+                    </div>
+                </div>
+                
+                 <div class="col-sm-6">
+                    <div class="form-group">
+                       <?php echo e(Form::label(null, __('Department'), ['class' => 'form-label', 'style' => 'display: table-column'])); ?>
+
+                     
+                    </div>
+                </div>
+                 <div class="col-6 form-group"  style="float: inline-start;">
+                    <?php echo e(Form::label('designation', __('Designation'),['class'=>'form-label'])); ?>
+
+                    <?php echo e(Form::text('billing_designation', null, array('class' => 'form-control' , 'placeholder' => __('Enter Designation')))); ?>
+
+                </div>
+                <div class="col-sm-5" style="float: inline-end;">
+                    <div class="form-group">
+                        <?php echo e(Form::label('department',__('Department'),array('class'=>'','class'=>'form-label'))); ?>
+
+                        <?php echo e(Form::text('billing_department',null,array('class'=>'form-control' , 'placeholder'=>__('Enter Department')))); ?>
+
+                    </div>
+                </div>
+                
+                </div>
+               
+                </div>
+                </div>
+                 <div class="col-md-4">
+                 <div class="card" style="height: 347px;">
+                 <div class="card-body">
+                
+                      <h6 class="sub-title"><?php echo e(__('Categories')); ?></h6><br>
+                     <div class="col-sm-12">
+                     <div class="form-group">
+                        <?php echo e(Form::label('stage_id', __('Status'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                        <?php echo e(Form::select('stage_id', $stages,null, array('class' => 'form-control select','required'=>'required'))); ?>
+
+                    </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <?php echo e(Form::label('sources', __('Sources'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                       <?php echo e(Form::select('sources[]', $sources,null, array('class' => 'form-control select','required'=>'required'))); ?>
+
+        
+                    </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <?php echo e(Form::label('type', __('Request Type'),['class'=>'form-label'])); ?><span class="text-danger">*</span>
+                       <?php echo e(Form::select('request_id', $types,null, array('class' => 'form-control select','required'=>'required'))); ?>
+
+        
+                    </div>
+                    </div>
+                   
+                </div>
+            </div>
+            
+         </div>
+    </div>
+    <div class="row">
+        <div id="divContainer">
+                    <input type="hidden" name="shipping-check" value="0" id="shipping_check">
+        </div>
+            <div class="form-group text-center">
+                <a class="btn btn-outline-light sm text-dark" onclick="appendDiv()" style="background-color: revert-layer;"><i class="ti ti-plus" style="background-color: darkgray;
+                    border-radius: 50%;"></i> Add Contact Person</a>
+            </div>
+    </div>
+   
+    <?php if(App\Models\Utility::getValByName('shipping_display')=='on'): ?>
+     <div class="row">
+        <div class="col-md-8">
+       <div class="card" style="height: 375px;">
+            <div class="card-body">
+                <h6 class="sub-title"><?php echo e(__('Address & Contact')); ?></h6>
+               
+                
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <?php echo e(Form::label('shipping_address',__('Address'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                            <label class="form-label" for="example2cols1Input"></label>
+                            <?php echo e(Form::textarea('shipping_address',null,array('class'=>'form-control','rows'=>3 , 'placeholder'=>__('Enter Address'),'required'=>'required'))); ?>
+
+        
+                        </div>
+                    </div>
+        
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="float: inline-start;">
+                        <div class="form-group">
+                            <?php echo e(Form::label('shipping_country',__('Country'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                            <?php echo e(Form::text('shipping_country',null,array('class'=>'form-control' , 'placeholder'=>__('Enter Country'),'required'=>'required'))); ?>
+
+        
+                        </div>
+                    </div>
+                    <div class=" col-lg-5 col-md-5 col-sm-6" style="float: inline-end;">
+                        <div class="form-group">
+                            <?php echo e(Form::label('shipping_state',__('State'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                            <?php echo e(Form::text('shipping_state',null,array('class'=>'form-control' , 'placeholder'=>__('Enter State'),'required'=>'required'))); ?>
+
+        
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="float: inline-start;">
+                        <div class="form-group">
+                            <?php echo e(Form::label('shipping_city',__('City'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                            <?php echo e(Form::text('shipping_city',null,array('class'=>'form-control' , 'placeholder'=>__('Enter City'),'required'=>'required'))); ?>
+
+        
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5" style="float: inline-end;">
+                        <div class="form-group">
+                            <?php echo e(Form::label('shipping_zip',__('Zip Code'),array('class'=>'form-label'))); ?><span class="text-danger">*</span>
+                            <?php echo e(Form::text('shipping_zip',null,array('class'=>'form-control' , 'placeholder' => __('Enter Zip Code'),'required'=>'required'))); ?>
+
+        
+                        </div>
+                    </div>
+                   </div>
+                   </div>
+                   </div>
+                     <div class="col-md-4">
+                      <div class="card">
+                      <div class="card-body">
+                      <h6 class="sub-title"><?php echo e(__('Additional')); ?></h6><br>
+                     <div class="col-sm-12">
+                     <div class="form-group">
+                          <?php echo e(Form::label('assigned_by',__('Lead Assigned by'),array('class'=>'form-label'))); ?>
+
+                            <?php echo e(Form::text('assigned_by',\Auth::user()->name,array('class'=>'form-control' , 'placeholder' => __('Lead Assigned Name'), 'readonly'))); ?>
+
+                        
+                    </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <?php echo e(Form::label('owner_name', __('Lead Owner Name'),['class'=>'form-label'])); ?>
+
+                        <?php echo e(Form::text('owner_id', \Auth::user()->name, array('class' => 'form-control','required'=>'required', 'readonly'))); ?>
+
+        
+                    </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                         <?php echo e(Form::label('assigned_to', __('Lead Assigned to'),['class'=>'form-label'])); ?>
+
+                         <?php echo e(Form::select('user_id', $users,null, array('class' => 'form-control select','required'=>'required'))); ?>
+
+        
+                    </div>
+                    </div>
+                   
+                </div>
+                
+                </div>
+             </div>
+            </div>
+        </div>
+    <?php endif; ?>
+        <input type="hidden" name="subject" value="demo">
+        <!--<input type="hidden" name="user_id" value="<?php echo e(\Auth::user()->ownerId()); ?>">-->
+        
+        <div class="card">
+            <div class="card-body">
+             <div class="col-12 form-group">
+                <?php echo e(Form::label('notes', __('Notes'),['class'=>'form-label'])); ?>
+
+                <?php echo e(Form::textarea('notes',null, array('class' => 'summernote-simple', 'style' => 'width: 100%;'))); ?>
+
+            </div>
+            </div>
+           <div class="modal-footer" style="padding: 13px 18px 12px 15px;">
+            <span style="float: inline-end;"><input type="submit" value="<?php echo e(__('Save')); ?>" title="<?php echo e(__('Create Lead')); ?>" class="btn-sm custom-file-uploadss" style="border: none;"></span>
+           
+           </div>  
+        </div>
+       
+    </div>
+
+
+
+
+<?php echo e(Form::close()); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('script-page'); ?>
+    <script src="<?php echo e(asset('css/summernote/summernote-bs4.js')); ?>"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+ <script>
+   const phoneInputField = document.querySelector("#phone");
+   const phoneInput = window.intlTelInput(phoneInputField, {
+     utilsScript:
+       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            nationalMode: true,
+            autoHideDialCode: true,
+            autoPlaceholder: "ON",
+            dropdownContainer: document.body,
+            formatOnDisplay: true,
+            hiddenInput: "phone",
+            initialCountry: "IN",
+            placeholderNumberType: "MOBILE",
+            separateDialCode: true
+   });
+ </script>  
+<script>
+  // tinymce.init({
+  //   selector: '#mytextarea',
+  //   menubar: '',
+  // });
+function appendDiv() {
+    // Create a new div element
+    //  $('#divContainer').append("<div id='mySecondDiv'></div>");
+    $("#shipping_check").val(1);
+    $('#divContainer').append('<div class="card"><div class="card-body"><div class="add_contact"><h6 class="sub-title">Contact Person Information</h6><div class="row"><div class="col-lg-6 col-md-6 col-sm-6"><div class="form-group"><label for="shipping_name" class="form-label">Name</label><input class="form-control" placeholder="Enter Name" name="shipping_name[]" type="text" id="shipping_name"></div></div><div class="col-lg-6 col-md-6 col-sm-6"><label for="email" class="form-label">Email</label><input class="form-control" placeholder="Enter email" name="shipping_email[]" type="text"></div><div class="col-lg-6 col-md-6 col-sm-6"><div class="form-group"><label for="shipping_phone" class="form-label">Phone</label><span><button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="border: none;border-radius: 5px 0px 0px 5px;height: 35px; margin: 31px 0px 0px -34px;position: absolute;"><a href="#"><img src="https://trumen.truelymatch.com/assets/images/india.png" width="30" alt="india"> </a></button><input class="form-control" style="padding-left: 100px;" placeholder="Enter Phone" name="shipping_phone[]" type="text" id="shipping_phone"> </span></div></div><div class="col-lg-5 col-md-5 col-sm-5"><div class="form-group"><label for="gender" class="form-label">Gender</label><span class="text-danger">*</span><div class="d-flex radio-check"><div class="custom-control custom-radio custom-control-inline"><input type="radio" id="g_male" value="Male" name="shipping_gender[]" class="form-check-input" checked=""><label class="form-check-label " for="g_male">Male</label></div><div class="custom-control custom-radio ms-4 custom-control-inline"><input type="radio" id="g_female" value="Female" name="shipping_gender[]" class="form-check-input"><label class="form-check-label " for="g_female">Female</label></div></div></div></div><div class="col-lg-6 col-md-6 col-sm-6"><div class="form-group"><label for="department_id" class="form-label">Department</label><input class="form-control" placeholder="Enter Department" name="shipping_department[]" type="text"></div></div><div class="col-lg-5 col-md-5 col-sm-5"><div class="form-group"><label for="designation_id" class="form-label">Designation</label><input class="form-control" placeholder="Enter Designation" name="shipping_designation[]" type="text"></div></div><div class="col-lg-1 col-md-1 col-sm-1" style="padding-top: 26px;"><a class="mx-3 btn btn-primary sm align-items-center removeButton" title="remove"><label class="form-check-label " for="g_male"><i class="ti ti-trash text-white"></i></label></a></div></div></div></div></div>');
+
+    // Append the new div to a container
+    // var container = document.getElementById('divContainer');
+    // container.appendChild(newDiv);
+  }
+  
+  // Call the function to append content initially
+  $(document).on('click', '.removeButton', function() {
+//   e.preventDefault();
+   $(this).closest('.card').remove();
+   return false;
+});
+ 
+  $(document).ready(function() {
+     
+    $(".iti").css('display', 'block')
+     $(".choices__placeholder").css('display', 'none')
+      $('input[name="template_name"][id="contact_info"]').prop('checked', false);
+    //   $('.contact_info').addClass('d-none');
+       $('.add_contact').addClass('d-none');
+      $('input[name="template_name"]').change(function() {
+          var radioValue = $('input[name="template_name"]:checked').val();
+          var page_content = $('.contact_info');
+          if (radioValue === "contact_info") {
+              $('.contact_info').removeClass('d-none');
+              $('.add_contact').removeClass('d-none');
+          } else {
+              $('.contact_info').addClass('d-none');
+              $('.add_contact').addClass('d-none');
+          }
+      });
+      
+     $(document).on('change', '#email', function () {
+        var email = $(this).val();
+       
+        $.ajax({
+           url: '<?php echo e(route('lead.email.check')); ?>',
+            type: 'GET',
+            data: {
+               
+                "email": email,
+                "_token": "<?php echo e(csrf_token()); ?>",
+            },
+
+            success: function (data) {
+                 console.log(data)
+                if(data.status == false)
+                {
+                   return true; 
+                }else{
+                     show_toastr('Error', "<?php echo e(__('Email id already exist!')); ?>", 'error');
+                      $("#email").focus();
+                        return false; 
+                }
+            }
+
+        });
+        })
+          $("#create_lead").submit(function(e) {
+
+        //prevent Default functionality
+        e.preventDefault();
+        var email = $("#email").val();
+        $.ajax({
+           url: '<?php echo e(route('lead.email.check')); ?>',
+            type: 'GET',
+            data: {
+               
+                "email": email,
+                "_token": "<?php echo e(csrf_token()); ?>",
+            },
+
+            success: function (data) {
+                 console.log(data)
+                if(data.status == false)
+                {
+                    $('#create_lead')[0].submit();
+                   return true; 
+                }else{
+                     show_toastr('Error', "<?php echo e(__('Email id already exist!')); ?>", 'error');
+                        return false; 
+                }
+            }
+
+        });
+         return true; 
+        })
+  });
+ 
+
+  
+</script>
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/u217475692/domains/truelymatch.com/public_html/trumen/resources/views/leads/create.blade.php ENDPATH**/ ?>
