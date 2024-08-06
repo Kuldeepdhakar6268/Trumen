@@ -4783,6 +4783,192 @@ class ReportController extends Controller
         return view('report.sales_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
     }
 
+    public function productionReport(Request $request)
+    {
+        if (!empty($request->start_date) && !empty($request->end_date)) {
+            $start = $request->start_date;
+            $end = $request->end_date;
+        } else {
+            $start = date('Y-01-01');
+            $end = date('Y-m-d', strtotime('+1 day'));
+        }
+        $invoiceItems = QuotationProduct::select('product_services.name', \DB::raw('sum(quotation_products.quantity) as quantity'), \DB::raw('sum(quotation_products.price * quotation_products.quantity) as price'), \DB::raw('sum(quotation_products.price)/sum(quotation_products.quantity) as avg_price'));
+        $invoiceItems->leftjoin('product_services', 'product_services.id', 'quotation_products.product_id');
+        $invoiceItems->leftjoin('quotations', 'quotations.id', 'quotation_products.quotation_id');
+        $invoiceItems->where('product_services.created_by', \Auth::user()->creatorId());
+        $invoiceItems->where('quotations.quotation_date', '>=', $start);
+        $invoiceItems->where('quotations.quotation_date', '<=', $end);
+        $invoiceItems->where('quotations.order_status', '=', 'Complete');
+        $invoiceItems->groupBy('quotation_products.product_id');
+        $invoiceItems = $invoiceItems->get()->toArray();
+
+        $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
+            ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
+            ->selectRaw('(SELECT SUM((price * quantity - discount) * (taxes.rate / 100)) FROM quotation_products
+             LEFT JOIN taxes ON FIND_IN_SET(taxes.id, quotation_products.tax) > 0
+             WHERE quotation_products.quotation_id = quotations.id) as total_tax')
+            ->leftJoin('customers', 'customers.id', 'quotations.customer_id')
+            ->leftJoin('quotation_products', 'quotation_products.quotation_id', 'quotations.id')
+            ->where('quotations.created_by', \Auth::user()->creatorId())
+            ->where('quotations.quotation_date', '>=', $start)
+            ->where('quotations.quotation_date', '<=', $end)
+            ->groupBy('quotations.quotation_id')
+            ->get()
+            ->toArray();
+        $mergedArray = [];
+        foreach ($invoiceCustomeres as $item) {
+            $name = $item["name"];
+
+            if (!isset($mergedArray[$name])) {
+                $mergedArray[$name] = [
+                    "name" => $name,
+                    "invoice_count" => 0,
+                    "price" => 0.0,
+                    "total_tax" => 0.0,
+                ];
+            }
+
+            $mergedArray[$name]["invoice_count"] += $item["invoice_count"];
+            $mergedArray[$name]["price"] += $item["price"];
+            $mergedArray[$name]["total_tax"] += $item["total_tax"];
+        }
+        $invoiceCustomers = array_values($mergedArray);
+
+        $filter['startDateRange'] = $start;
+        $filter['endDateRange'] = $end;
+        $incExpBarChartData = \Auth::user()->getincExpBarChartData();
+                    //                dd( $data['incExpBarChartData']);
+        $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
+        $currentYear = date('Y');
+//  dd($filter);
+        return view('report.production_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+    }
+
+    public function purchaseManagementReport(Request $request)
+    {
+        if (!empty($request->start_date) && !empty($request->end_date)) {
+            $start = $request->start_date;
+            $end = $request->end_date;
+        } else {
+            $start = date('Y-01-01');
+            $end = date('Y-m-d', strtotime('+1 day'));
+        }
+        $invoiceItems = QuotationProduct::select('product_services.name', \DB::raw('sum(quotation_products.quantity) as quantity'), \DB::raw('sum(quotation_products.price * quotation_products.quantity) as price'), \DB::raw('sum(quotation_products.price)/sum(quotation_products.quantity) as avg_price'));
+        $invoiceItems->leftjoin('product_services', 'product_services.id', 'quotation_products.product_id');
+        $invoiceItems->leftjoin('quotations', 'quotations.id', 'quotation_products.quotation_id');
+        $invoiceItems->where('product_services.created_by', \Auth::user()->creatorId());
+        $invoiceItems->where('quotations.quotation_date', '>=', $start);
+        $invoiceItems->where('quotations.quotation_date', '<=', $end);
+        $invoiceItems->where('quotations.order_status', '=', 'Complete');
+        $invoiceItems->groupBy('quotation_products.product_id');
+        $invoiceItems = $invoiceItems->get()->toArray();
+
+        $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
+            ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
+            ->selectRaw('(SELECT SUM((price * quantity - discount) * (taxes.rate / 100)) FROM quotation_products
+             LEFT JOIN taxes ON FIND_IN_SET(taxes.id, quotation_products.tax) > 0
+             WHERE quotation_products.quotation_id = quotations.id) as total_tax')
+            ->leftJoin('customers', 'customers.id', 'quotations.customer_id')
+            ->leftJoin('quotation_products', 'quotation_products.quotation_id', 'quotations.id')
+            ->where('quotations.created_by', \Auth::user()->creatorId())
+            ->where('quotations.quotation_date', '>=', $start)
+            ->where('quotations.quotation_date', '<=', $end)
+            ->groupBy('quotations.quotation_id')
+            ->get()
+            ->toArray();
+        $mergedArray = [];
+        foreach ($invoiceCustomeres as $item) {
+            $name = $item["name"];
+
+            if (!isset($mergedArray[$name])) {
+                $mergedArray[$name] = [
+                    "name" => $name,
+                    "invoice_count" => 0,
+                    "price" => 0.0,
+                    "total_tax" => 0.0,
+                ];
+            }
+
+            $mergedArray[$name]["invoice_count"] += $item["invoice_count"];
+            $mergedArray[$name]["price"] += $item["price"];
+            $mergedArray[$name]["total_tax"] += $item["total_tax"];
+        }
+        $invoiceCustomers = array_values($mergedArray);
+
+        $filter['startDateRange'] = $start;
+        $filter['endDateRange'] = $end;
+        $incExpBarChartData = \Auth::user()->getincExpBarChartData();
+                    //                dd( $data['incExpBarChartData']);
+        $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
+        $currentYear = date('Y');
+//  dd($filter);
+        return view('report.purchase_management_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+    }
+
+    public function inventoryReport(Request $request)
+    {
+        if (!empty($request->start_date) && !empty($request->end_date)) {
+            $start = $request->start_date;
+            $end = $request->end_date;
+        } else {
+            $start = date('Y-01-01');
+            $end = date('Y-m-d', strtotime('+1 day'));
+        }
+        $invoiceItems = QuotationProduct::select('product_services.name', \DB::raw('sum(quotation_products.quantity) as quantity'), \DB::raw('sum(quotation_products.price * quotation_products.quantity) as price'), \DB::raw('sum(quotation_products.price)/sum(quotation_products.quantity) as avg_price'));
+        $invoiceItems->leftjoin('product_services', 'product_services.id', 'quotation_products.product_id');
+        $invoiceItems->leftjoin('quotations', 'quotations.id', 'quotation_products.quotation_id');
+        $invoiceItems->where('product_services.created_by', \Auth::user()->creatorId());
+        $invoiceItems->where('quotations.quotation_date', '>=', $start);
+        $invoiceItems->where('quotations.quotation_date', '<=', $end);
+        $invoiceItems->where('quotations.order_status', '=', 'Complete');
+        $invoiceItems->groupBy('quotation_products.product_id');
+        $invoiceItems = $invoiceItems->get()->toArray();
+
+        $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
+            ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
+            ->selectRaw('(SELECT SUM((price * quantity - discount) * (taxes.rate / 100)) FROM quotation_products
+             LEFT JOIN taxes ON FIND_IN_SET(taxes.id, quotation_products.tax) > 0
+             WHERE quotation_products.quotation_id = quotations.id) as total_tax')
+            ->leftJoin('customers', 'customers.id', 'quotations.customer_id')
+            ->leftJoin('quotation_products', 'quotation_products.quotation_id', 'quotations.id')
+            ->where('quotations.created_by', \Auth::user()->creatorId())
+            ->where('quotations.quotation_date', '>=', $start)
+            ->where('quotations.quotation_date', '<=', $end)
+            ->groupBy('quotations.quotation_id')
+            ->get()
+            ->toArray();
+        $mergedArray = [];
+        foreach ($invoiceCustomeres as $item) {
+            $name = $item["name"];
+
+            if (!isset($mergedArray[$name])) {
+                $mergedArray[$name] = [
+                    "name" => $name,
+                    "invoice_count" => 0,
+                    "price" => 0.0,
+                    "total_tax" => 0.0,
+                ];
+            }
+
+            $mergedArray[$name]["invoice_count"] += $item["invoice_count"];
+            $mergedArray[$name]["price"] += $item["price"];
+            $mergedArray[$name]["total_tax"] += $item["total_tax"];
+        }
+        $invoiceCustomers = array_values($mergedArray);
+
+        $filter['startDateRange'] = $start;
+        $filter['endDateRange'] = $end;
+        $incExpBarChartData = \Auth::user()->getincExpBarChartData();
+                    //                dd( $data['incExpBarChartData']);
+        $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
+        $currentYear = date('Y');
+//  dd($filter);
+        return view('report.inventory_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+    }
+
+    
+
+
     public function salesReportExport(Request $request)
     {
         if (!empty($request->start_date) && !empty($request->end_date)) {
@@ -4847,6 +5033,67 @@ class ReportController extends Controller
 
         return $data;
 
+    }
+
+    public function financeReport(Request $request)
+    {
+        if (!empty($request->start_date) && !empty($request->end_date)) {
+            $start = $request->start_date;
+            $end = $request->end_date;
+        } else {
+            $start = date('Y-01-01');
+            $end = date('Y-m-d', strtotime('+1 day'));
+        }
+        $invoiceItems = QuotationProduct::select('product_services.name', \DB::raw('sum(quotation_products.quantity) as quantity'), \DB::raw('sum(quotation_products.price * quotation_products.quantity) as price'), \DB::raw('sum(quotation_products.price)/sum(quotation_products.quantity) as avg_price'));
+        $invoiceItems->leftjoin('product_services', 'product_services.id', 'quotation_products.product_id');
+        $invoiceItems->leftjoin('quotations', 'quotations.id', 'quotation_products.quotation_id');
+        $invoiceItems->where('product_services.created_by', \Auth::user()->creatorId());
+        $invoiceItems->where('quotations.quotation_date', '>=', $start);
+        $invoiceItems->where('quotations.quotation_date', '<=', $end);
+        $invoiceItems->where('quotations.order_status', '=', 'Complete');
+        $invoiceItems->groupBy('quotation_products.product_id');
+        $invoiceItems = $invoiceItems->get()->toArray();
+
+        $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
+            ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
+            ->selectRaw('(SELECT SUM((price * quantity - discount) * (taxes.rate / 100)) FROM quotation_products
+             LEFT JOIN taxes ON FIND_IN_SET(taxes.id, quotation_products.tax) > 0
+             WHERE quotation_products.quotation_id = quotations.id) as total_tax')
+            ->leftJoin('customers', 'customers.id', 'quotations.customer_id')
+            ->leftJoin('quotation_products', 'quotation_products.quotation_id', 'quotations.id')
+            ->where('quotations.created_by', \Auth::user()->creatorId())
+            ->where('quotations.quotation_date', '>=', $start)
+            ->where('quotations.quotation_date', '<=', $end)
+            ->groupBy('quotations.quotation_id')
+            ->get()
+            ->toArray();
+        $mergedArray = [];
+        foreach ($invoiceCustomeres as $item) {
+            $name = $item["name"];
+
+            if (!isset($mergedArray[$name])) {
+                $mergedArray[$name] = [
+                    "name" => $name,
+                    "invoice_count" => 0,
+                    "price" => 0.0,
+                    "total_tax" => 0.0,
+                ];
+            }
+
+            $mergedArray[$name]["invoice_count"] += $item["invoice_count"];
+            $mergedArray[$name]["price"] += $item["price"];
+            $mergedArray[$name]["total_tax"] += $item["total_tax"];
+        }
+        $invoiceCustomers = array_values($mergedArray);
+
+        $filter['startDateRange'] = $start;
+        $filter['endDateRange'] = $end;
+        $incExpBarChartData = \Auth::user()->getincExpBarChartData();
+                    //                dd( $data['incExpBarChartData']);
+        $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
+        $currentYear = date('Y');
+//  dd($filter);
+        return view('report.finance_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
     }
 
     public function ReceivablesReport(Request $request)

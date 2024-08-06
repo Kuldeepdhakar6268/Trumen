@@ -44,6 +44,7 @@ use App\Http\Controllers\DealController;
 use App\Http\Controllers\ToDoController;
 use App\Http\Controllers\JobCardController;
 use App\Http\Controllers\DebitNoteController;
+use App\Http\Controllers\DeadMaterialController;
 use App\Http\Controllers\DeductionOptionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
@@ -80,6 +81,7 @@ use App\Http\Controllers\MercadoPaymentController;
 use App\Http\Controllers\MolliePaymentController;
 use App\Http\Controllers\NotificationTemplatesController;
 use App\Http\Controllers\OtherPaymentController;
+use App\Http\Controllers\OrderReturnController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PayFastController;
 use App\Http\Controllers\PaymentController;
@@ -303,13 +305,6 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('/finance-dashboard', [DashboardController::class, 'finance_dashboard_index'])->name('finance.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('/hrms-dashboard', [DashboardController::class, 'hrms_dashboard_index'])->name('hrms.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('/reports-dashboard', [DashboardController::class, 'reports_dashboard_index'])->name('reports.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
-
-
-
-
-
-
-
     Route::get('/project-dashboard', [DashboardController::class, 'project_dashboard_index'])->name('project.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('/hrm-dashboard', [DashboardController::class, 'hrm_dashboard_index'])->name('hrm.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('/crm-dashboard', [DashboardController::class, 'crm_dashboard_index'])->name('crm.dashboard')->middleware(['auth', 'XSS', 'revalidate']);
@@ -649,6 +644,13 @@ Route::group(['middleware' => ['verified']], function () {
             Route::post('export/balance-sheet', [ReportController::class, 'balanceSheetExport'])->name('balance.sheet.export');
             Route::post('export/profit-loss', [ReportController::class, 'profitLossExport'])->name('profit.loss.export');            
             Route::get('report/sales', [ReportController::class, 'salesReport'])->name('report.sales');
+            
+            Route::get('report/production', [ReportController::class, 'productionReport'])->name('report.production');
+            Route::get('report/purchase-management',[ReportController::class,'purchaseManagementReport'])->name('report.purchase_management');
+            Route::get('report/inventory', [ReportController::class, 'inventoryReport'])->name('report.inventory');
+            Route::get('report/finance', [ReportController::class, 'financeReport'])->name('report.finance');
+
+
             Route::post('export/sales', [ReportController::class, 'salesReportExport'])->name('sales.export');
             Route::get('report/receivables', [ReportController::class, 'ReceivablesReport'])->name('report.receivables');
             Route::post('export/receivables', [ReportController::class, 'ReceivablesExport'])->name('receivables.export');
@@ -1545,7 +1547,7 @@ Route::group(['middleware' => ['verified']], function () {
     Route::post('quotation/create-new', [QuotationController::class, 'quotation_store'])->name('quotation.store.new');
     Route::post('quotation/product/destroy', [QuotationController::class, 'productDestroy'])->name('quotation.product.destroy');
     Route::get('quotation/changestatus/{id}/{status}', [QuotationController::class, 'changeStatus'])->name('quotation.status');
-     Route::post('order/status/{id}', [QuotationController::class, 'changeOrderStatus'])->name('quotation.order.status');
+    Route::post('order/status/{id}', [QuotationController::class, 'changeOrderStatus'])->name('quotation.order.status');
     Route::get('quotation/convert/{id}', [QuotationController::class, 'convert'])->name('quotation.convert');
     Route::post('quantity/product', [QuotationController::class, 'productQuantity'])->name('product.quantity');
     Route::post('/quotation/template/setting', [QuotationController::class, 'saveQuotationTemplateSettings'])->name('quotation.template.setting');
@@ -1553,8 +1555,12 @@ Route::group(['middleware' => ['verified']], function () {
     Route::get('printview/quotation', [QuotationController::class, 'printView'])->name('quotation.printview');
     Route::get('quotation/pdf/{id}', [QuotationController::class, 'quotation'])->name('quotation.pdf')->middleware(['auth', 'XSS', 'revalidate']);
     Route::get('jobcard/pdf/{id}', [QuotationController::class, 'jobcard'])->name('jobcard.pdf')->middleware(['auth', 'XSS', 'revalidate']);
+    Route::get('dead/product/status/{id}', [QuotationController::class, 'changeProductStatus'])->name('dead.product.status');
+    Route::get('dead/material/status', [DeadMaterialController::class, 'changeMaterialStatus'])->name('dead.material.status');
     Route::get('quotation/customer/{id}', [QuotationController::class, 'customer_quotations'])->name('quotation.customer')->middleware(['auth', 'XSS', 'revalidate']);
-
+    
+    Route::resource('deadproduct', DeadProductController::class)->middleware(['auth', 'XSS', 'revalidate']);
+    Route::resource('deadmaterial', DeadMaterialController::class)->middleware(['auth', 'XSS', 'revalidate']);
     Route::resource('warehouse', WarehouseController::class)->middleware(['auth', 'XSS', 'revalidate']);
     Route::group(
         [
@@ -1567,13 +1573,16 @@ Route::group(['middleware' => ['verified']], function () {
             Route::post('purchase/items', [PurchaseController::class, 'items'])->name('purchase.items');
             Route::post('return/items', [PurchaseController::class, 'returnItems'])->name('purchase.return.item');
             Route::get('request/items', [OrderRequestController::class, 'items'])->name('request.items');
+            Route::get('order/request/search', [OrderRequestController::class, 'search'])->name('order.request.search')->middleware(['auth', 'XSS']);
             Route::post('request/order/items', [OrderRequestController::class, 'orderItems'])->name('request.order.items');
             Route::resource('purchase', PurchaseController::class);
             Route::resource('orderReturn', OrderReturnController::class);
             Route::resource('order', OrderRequestController::class);
+            Route::get('return/purchase/filter', [OrderReturnController::class, 'searchPurchaseReturn'])->name('return.purchase.filter');
 
             //    Route::get('/bill/{id}/', 'PurchaseController@purchaseLink')->name('purchase.link.copy');
             Route::get('purchase/{id}/payment', [PurchaseController::class, 'payment'])->name('purchase.payment');
+            Route::get('purchase/filter/search', [PurchaseController::class, 'searchPurchase'])->name('purchase.filter');
             Route::post('purchase/{id}/payment', [PurchaseController::class, 'createPayment'])->name('purchase.payment');
             Route::post('purchase/{id}/payment/{pid}/destroy', [PurchaseController::class, 'paymentDestroy'])->name('purchase.payment.destroy');
             Route::post('purchase/product/destroy', [PurchaseController::class, 'productDestroy'])->name('purchase.product.destroy');

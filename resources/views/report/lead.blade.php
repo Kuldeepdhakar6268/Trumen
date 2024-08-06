@@ -44,12 +44,14 @@
                     <div id="general-report">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{{ __('This Week Leads Conversions') }}</h5>
+                                <h5>{{ __('This Week Leads Conversions ') }}</h5>
                             </div>
-                            <div class="card-body pt-0 ">
+                            <div class="card-body pt-0 " style="display:inline;">
                                 <div id="leads-this-week"
-                                     data-color="primary" data-height="280">
+                                     data-color="primary"  data-height="480">
                                 </div>
+
+                                
                             </div>
                         </div>
                         <div class="card">
@@ -362,9 +364,31 @@
         var options = {
             series: {!! json_encode($devicearray['data']) !!},
             chart: {
-                width: 350,
+                width: 550,
+                height:30,
                 type: 'pie',
+               
             },
+            legend: {
+                        position: 'top',
+
+                        labels: {
+         
+          
+          useSeriesColors: true,
+
+          
+        
+      },
+      onItemHover: {
+      highlightDataSeries: true
+    },
+
+    
+                
+    },
+
+            
 
             colors: ["#35abb6","#ffa21d","#ff3a6e","#6fd943","#5c636a","#181e28","#0288d1"],
             labels: {!! json_encode($devicearray['label']) !!},
@@ -372,10 +396,20 @@
                 breakpoint: 480,
                 options: {
                     chart: {
-                        width: 200
+                        width: 200,
+                        height:200,
                     },
+                    
                     legend: {
                         position: 'bottom',
+                        onItemClick: {
+      toggleDataSeries: true
+    },
+
+    
+    onItemHover: {
+      highlightDataSeries: true
+    },
                     }
                 }
             }]
@@ -402,7 +436,7 @@
                         opacity: 0.2
                     },
                     toolbar: {
-                        show: false
+                        show: false                            
                     }
                 },
                 dataLabels: {
