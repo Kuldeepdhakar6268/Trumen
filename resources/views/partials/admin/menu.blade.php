@@ -1625,20 +1625,21 @@
                         @endcan
                         @can('manage bug report')
                             <li class="dash-item {{ request()->is('bugs-report*') ? 'active' : '' }}">
-                                <a class="dash-link" href="#">{{ __('Inventory Report') }}</a>
+                                <a class="dash-link" href="{{route('report.inventory')}}">{{ __('Inventory Report') }}</a>
                             </li>
                         @endcan
                         @can('manage project task')
                             <li class="dash-item {{ request()->is('calendar*') ? 'active' : '' }}">
                                 <a class="dash-link"
-                                    href="#">{{ __('Service & Management Report') }}</a>
+                                    href="{{route('support.index')}}">{{ __('Service & Management Report') }}</a>
                             </li>
                         @endcan
                         @if (\Auth::user()->type != 'super admin')
                             <li class="dash-item  {{ Request::segment(1) == 'time-tracker' ? 'active open' : '' }}">
-                                <a class="dash-link" href="#">{{ __('Finance Report') }}</a>
+                                <a class="dash-link" href="{{route('report.finance')}}">{{ __('Finance Report') }}</a>
                             </li>
                         @endif
+                        {{--
                        @if (\Auth::user()->type == 'company' || \Auth::user()->type == 'Employee')
                             <li
                                 class="dash-item  {{ Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show' ? 'active' : '' }}">
@@ -1647,6 +1648,8 @@
                             </li>
                         @endif
 
+                        --}}
+                        {{--
                         @if (Gate::check('manage project task stage') || Gate::check('manage bug status'))
                             <li
                                 class="dash-item dash-hasmenu {{ Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' ? 'active dash-trigger' : '' }}">
@@ -1670,6 +1673,8 @@
                                 </ul>
                             </li>
                         @endif 
+
+                        --}}
                     </ul>
                 </li>
             @endif

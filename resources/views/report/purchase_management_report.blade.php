@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('page-title')
-    {{ __('Production Report') }}
+    {{ __('Purchase & Management Report') }}
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
-    <li class="breadcrumb-item">{{ __('Production Report') }}</li>
+    <li class="breadcrumb-item">{{ __('Purchase & Management Report') }}</li>
 @endsection
 
 @push('script-page')
@@ -488,23 +488,20 @@
         <!--Sales Report    -->
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                   <h5>Production Reports</h5>
-                </div>
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4 form-group">
                             
                          <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
-                            Production List
+                            Vendor's
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
                         <div class="col-sm-4 form-group">
                          <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Production Invoice
+                             Order Request
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
@@ -512,100 +509,25 @@
                         <div class="col-sm-4 form-group">
                             
                          <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Production Records
+                             Purchase Orders
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
                         <div class="col-sm-4 form-group">
                          <a id="payment-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Product List
+                             Return Orders
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
-                         <a id="proposal-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Demage Product List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                         <a id="customer-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Dead Product List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        
-                        </div> 
+                       
+                       
                     </div>
                 </div>
 
             </div>
-              <div class="card">
-                <div class="card-header">
-                   <h5>Material Reports</h5>
-                </div>
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4 form-group">
-                        
-                         <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Material Purchase List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                        <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
-                             Material List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                          <a id="customer-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
-                            Damage Material List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                         
-                        </div> 
-
-                        <div class="col-sm-4 form-group">
-                        
-                         <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Material Purchase Invoice
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                        <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
-                             Material Purchase Records
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                          <a id="customer-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
-                            Dead Material List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                         
-                        </div> 
-
-                        <div class="col-sm-4 form-group">
-                        
-                         <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Material Ledger
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        </div> 
-                        <div class="col-sm-4 form-group">
-                        <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
-                             Material Stock
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        
-                        </div> 
+              
                        
 
 
@@ -618,27 +540,7 @@
         <!--End seles report-->
        
 <!--Vendor report-->
-<div class="col-12">
-<div class="card ">
-                <div class="card-header">
-                   <h5>Vendor Reports</h5>
-                </div>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4 form-group">
-                        
-                         <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                            Vendor List
-                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
-                         </a>
-                        </div> 
-                       
-                       
-
-
-                       
-                    </div>
                 </div>
 
             </div>

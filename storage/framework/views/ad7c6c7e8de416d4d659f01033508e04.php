@@ -836,51 +836,22 @@
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage bug report')): ?>
                             <li class="dash-item <?php echo e(request()->is('bugs-report*') ? 'active' : ''); ?>">
-                                <a class="dash-link" href="#"><?php echo e(__('Inventory Report')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('report.inventory')); ?>"><?php echo e(__('Inventory Report')); ?></a>
                             </li>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task')): ?>
                             <li class="dash-item <?php echo e(request()->is('calendar*') ? 'active' : ''); ?>">
                                 <a class="dash-link"
-                                    href="#"><?php echo e(__('Service & Management Report')); ?></a>
+                                    href="<?php echo e(route('support.index')); ?>"><?php echo e(__('Service & Management Report')); ?></a>
                             </li>
                         <?php endif; ?>
                         <?php if(\Auth::user()->type != 'super admin'): ?>
                             <li class="dash-item  <?php echo e(Request::segment(1) == 'time-tracker' ? 'active open' : ''); ?>">
-                                <a class="dash-link" href="#"><?php echo e(__('Finance Report')); ?></a>
+                                <a class="dash-link" href="<?php echo e(route('report.finance')); ?>"><?php echo e(__('Finance Report')); ?></a>
                             </li>
                         <?php endif; ?>
-                       <?php if(\Auth::user()->type == 'company' || \Auth::user()->type == 'Employee'): ?>
-                            <li
-                                class="dash-item  <?php echo e(Request::route()->getName() == 'project_report.index' || Request::route()->getName() == 'project_report.show' ? 'active' : ''); ?>">
-                                <a class="dash-link"
-                                    href="<?php echo e(route('project_report.index')); ?>"><?php echo e(__('Project Report')); ?></a>
-                            </li>
-                        <?php endif; ?>
-
-                        <?php if(Gate::check('manage project task stage') || Gate::check('manage bug status')): ?>
-                            <li
-                                class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' ? 'active dash-trigger' : ''); ?>">
-                                <a class="dash-link" href="#"><?php echo e(__('Project System Setup')); ?><span
-                                        class="dash-arrow"><i data-feather="chevron-right"></i></span></a>
-                                <ul class="dash-submenu">
-                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage project task stage')): ?>
-                                        <li
-                                            class="dash-item  <?php echo e(Request::route()->getName() == 'project-task-stages.index' ? 'active' : ''); ?>">
-                                            <a class="dash-link"
-                                                href="<?php echo e(route('project-task-stages.index')); ?>"><?php echo e(__('Project Task Stages')); ?></a>
-                                        </li>
-                                    <?php endif; ?>
-                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('manage bug status')): ?>
-                                        <li
-                                            class="dash-item <?php echo e(Request::route()->getName() == 'bugstatus.index' ? 'active' : ''); ?>">
-                                            <a class="dash-link"
-                                                href="<?php echo e(route('bugstatus.index')); ?>"><?php echo e(__('Bug Status')); ?></a>
-                                        </li>
-                                    <?php endif; ?>
-                                </ul>
-                            </li>
-                        <?php endif; ?> 
+                        
+                        
                     </ul>
                 </li>
             <?php endif; ?>
