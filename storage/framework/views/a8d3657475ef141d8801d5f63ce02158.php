@@ -20,11 +20,11 @@
                     {
                      $data['todo'] = \App\Models\Todo::orderBy('created_at','desc')->where('reminder', 0)->get();
                      $remind = \App\Models\Todo::orderBy('created_at','desc')->where(['reminder' => 1, 'is_read' => 0])->get();
-                     $findremind = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->whereDate('start', now()->format('Y-m-d'))->where(['reminder' => 1, 'is_read' => 0])->get();
+                     $findremind = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->whereDate('start', now()->format('Y-m-d'))->where(['reminder' => 1, 'is_read' => 0])->where('time', '<=', now()->format('H:i'))->get();
                     }else{
                      $data['todo'] = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->where('reminder', 0)->get();
                      $remind = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->where('reminder', 1)->get();
-                     $findremind = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->whereDate('start', \Carbon\Carbon::now()->format('Y-m-d'))->where(['reminder' => 1, 'is_read' => 0])->get();
+                     $findremind = \App\Models\Todo::where(['created_by' => Auth::user()->id])->orderBy('created_at','desc')->whereDate('start', \Carbon\Carbon::now()->format('Y-m-d'))->where(['reminder' => 1, 'is_read' => 0])->where('time', '<=', now()->format('H:i'))->get();
         }
 ?>
 <?php if(isset($setting['cust_theme_bg']) && $setting['cust_theme_bg'] == 'on'): ?>
@@ -94,7 +94,7 @@
                 <?php if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' ): ?>
                       <li class="dropdown dash-h-item drp-notification">
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                         <i class="ti ti-bell"></i>
+                         <i class="ti ti-clock"></i>
                             <span class="bg-danger dash-h-badge message-toggle-msg  message-counter custom_messanger_counter beep"> <?php echo e($findremind->count()); ?><span
                                     class="sr-only"></span>
                             </span>
