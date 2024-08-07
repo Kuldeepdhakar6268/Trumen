@@ -59,6 +59,7 @@
                               text: "Your has been seen the reminder.",
                               icon: "success"
                             });  
+                            window.location.reload();
                             }else{
                                 Swal.fire({
                               title: "fieled!",

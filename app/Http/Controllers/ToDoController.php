@@ -205,7 +205,7 @@ class ToDoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        //  dd($request->all());
         $usr = \Auth::user();
         if($usr->type == 'sales' || $usr->type == 'company')
         {
@@ -235,7 +235,7 @@ class ToDoController extends Controller
                 $task->priority = $request->priority;
                 $task->hrs = $request->hrs;
                 $task->start    =  $request->start;
-                $task->end      =  $request->end;
+                $task->end      =  $request->end != null?$request->end:$request->start;
                 $task->created_by  = $usr->id;
                 $task->reminder  = $request->reminder;
                 $task->is_read = 0;

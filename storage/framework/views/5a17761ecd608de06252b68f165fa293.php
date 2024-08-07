@@ -28,11 +28,19 @@
                         <div class="list-group list-group-flush" id="useradd-sidenav">
                            
                             <a class="list-group-item list-group-item-action border-0 text-center text-light d-none" style="background-color: #89AB41;
+<<<<<<< HEAD
     border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" id="generalTab"><i class="ti ti-arrows-right-left"></i> <?php echo e(__('Switch to General Report')); ?>
 
                                 <div class="float-end"></div></a>
                            <a class="list-group-item py-2  list-group-item-action border-0 text-start text-light" style="background-color: #89AB41;
     border-top-left-radius: 10px;border-top-right-radius: 10px;" id="staffTab"><i class="ti ti-arrows-right-left"></i> <?php echo e(__('Switch to Staff Report')); ?>
+=======
+    border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" id="generalTab"><i class="ti ti-arrows-horizontal"></i> <?php echo e(__('Switch to General Report')); ?>
+
+                                <div class="float-end"></div></a>
+                           <a class="list-group-item list-group-item-action border-0 text-center text-light" style="background-color: #89AB41;
+    border-top-left-radius: 10px;border-top-right-radius: 10px;" id="staffTab"><i class="ti ti-arrows-horizontal"></i> <?php echo e(__('Switch to Staff Report')); ?>
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
 
                                 <div class="float-end"></div></a>
                         </div>
@@ -48,9 +56,15 @@
                             <div class="card-header">
                                 <h5><?php echo e(__('This Week Leads Conversions ')); ?></h5>
                             </div>
+<<<<<<< HEAD
                             <div class="card-body"  style="display:inline;height:100px;">
                                 <div id="leads-this-week"
                                      data-color="primary"   data-height="480">
+=======
+                            <div class="card-body pt-0 " style="display:inline;">
+                                <div id="leads-this-week"
+                                     data-color="primary"  data-height="480">
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                                 </div>
 
                                 
@@ -359,6 +373,7 @@
     <script>
         var options = {
             series: <?php echo json_encode($devicearray['data']); ?>,
+<<<<<<< HEAD
             
             chart: {
                 width: 950,
@@ -432,16 +447,52 @@
       },
 
     
+=======
+            chart: {
+                width: 550,
+                height:30,
+                type: 'pie',
+               
+            },
+            legend: {
+                        position: 'top',
+
+                        labels: {
+         
+          
+          useSeriesColors: true,
+
+          background: {
+    enabled: true,
+    foreColor: '#fff',
+    borderRadius: 2,
+    padding: 4,
+    opacity: 0.9,
+    borderWidth: 1,
+    borderColor: '#fff'
+  },
+        
+      },
+      onItemHover: {
+      highlightDataSeries: true
+    },
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
 
     
                 
     },
 
+<<<<<<< HEAD
     
 
             
 
             colors: ["#27B9DA","#09A9F3","#C53DA8","#757575","#8D24AA","#E25488","#0088D1"],
+=======
+            
+
+            colors: ["#35abb6","#ffa21d","#ff3a6e","#6fd943","#5c636a","#181e28","#0288d1"],
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
             labels: <?php echo json_encode($devicearray['label']); ?>,
             responsive: [{
                 breakpoint: 480,
@@ -453,7 +504,10 @@
                     
                     legend: {
                         position: 'bottom',
+<<<<<<< HEAD
         
+=======
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                         onItemClick: {
       toggleDataSeries: true
     },
