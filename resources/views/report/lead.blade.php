@@ -28,10 +28,10 @@
                         <div class="list-group list-group-flush" id="useradd-sidenav">
                            
                             <a class="list-group-item list-group-item-action border-0 text-center text-light d-none" style="background-color: #89AB41;
-    border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" id="generalTab"><i class="ti ti-arrows-horizontal"></i> {{ __('Switch to General Report') }}
+    border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;" id="generalTab"><i class="ti ti-arrows-right-left"></i> {{ __('Switch to General Report') }}
                                 <div class="float-end"></div></a>
-                           <a class="list-group-item list-group-item-action border-0 text-center text-light" style="background-color: #89AB41;
-    border-top-left-radius: 10px;border-top-right-radius: 10px;" id="staffTab"><i class="ti ti-arrows-horizontal"></i> {{ __('Switch to Staff Report') }}
+                           <a class="list-group-item py-2  list-group-item-action border-0 text-start text-light" style="background-color: #89AB41;
+    border-top-left-radius: 10px;border-top-right-radius: 10px;" id="staffTab"><i class="ti ti-arrows-right-left"></i> {{ __('Switch to Staff Report') }}
                                 <div class="float-end"></div></a>
                         </div>
                     </div>
@@ -46,9 +46,9 @@
                             <div class="card-header">
                                 <h5>{{ __('This Week Leads Conversions ') }}</h5>
                             </div>
-                            <div class="card-body pt-0 " style="display:inline;">
+                            <div class="card-body"  style="display:inline;height:100px;">
                                 <div id="leads-this-week"
-                                     data-color="primary"  data-height="480">
+                                     data-color="primary"   data-height="480">
                                 </div>
 
                                 
@@ -363,34 +363,89 @@
     <script>
         var options = {
             series: {!! json_encode($devicearray['data']) !!},
+            
             chart: {
-                width: 550,
-                height:30,
+                width: 950,
+                height:200,
                 type: 'pie',
+        
+                margin:0,
                
             },
+
+
+            dataLabels: {
+    enabled: false
+  },
+
             legend: {
-                        position: 'top',
 
-                        labels: {
-         
+                     
+      markers: {
+          size: 0,
+          shape: undefined,
+          strokeWidth: undefined,
+          fillColors: undefined,
+          customHTML: undefined,
+          onClick: undefined,
           
-          useSeriesColors: true,
-
-          
-        
+          width:0,
       },
+
+                    
+                        position: 'unset',
+                        offsetX: 10,
+                        offsetY: 0,
+
+                        
+                        labels: {
+                            useSeriesColors: true, 
+                         
+                            
+      },
+
+      plotOptions: {
+        pie: {
+            dataLabels: {
+                enabled: false // Ensure data labels are hidden
+            }
+        }
+    },
+
+    itemMargin: {
+            horizontal: 0, // Horizontal margin between legend items
+            vertical: 10 // Vertical margin between legend items
+        },
+       
+        
+
+      
+
+      
+
+      formatter: function(seriesName, opts) {
+        var seriesColor = opts.w.config.colors[opts.seriesIndex];
+            
+            return `<button class="px-3 py-2 btn mx-2 " style="background-color: ${seriesColor}; color: white; border:none;">${seriesName}</button>`;
+                },
       onItemHover: {
       highlightDataSeries: true
     },
+    onItemClick: {
+          toggleDataSeries: true
+      },
+
+    
 
     
                 
     },
 
+    
+
             
 
-            colors: ["#35abb6","#ffa21d","#ff3a6e","#6fd943","#5c636a","#181e28","#0288d1"],
+            colors: ["#27B9DA","#09A9F3","#C53DA8","#757575","#8D24AA","#E25488","#0088D1"],
             labels: {!! json_encode($devicearray['label']) !!},
             responsive: [{
                 breakpoint: 480,
@@ -402,6 +457,7 @@
                     
                     legend: {
                         position: 'bottom',
+        
                         onItemClick: {
       toggleDataSeries: true
     },

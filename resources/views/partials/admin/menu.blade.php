@@ -67,7 +67,8 @@
                          <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'account-dashboard' ? 'active' : '' }}">
                             <a href="{{ route('dashboard') }}" class="dash-link">
                                 <span class="dash-micon">
-                                <i class="ti ti-home"></i>
+                                <!-- <i class="ti ti-home"></i> -->
+                                <image src="{{asset('assets/images/menu/dashboard.png')}}" width="20"></image>
                                 </span>
                                 <span
                                     class="dash-mtext">{{ __('Dashboard') }}</span>
@@ -355,8 +356,10 @@
                     <li
                         class="dash-item dash-hasmenu {{ Request::segment(1) == 'sales-crm-dashboard' ? ' active dash-trigger' : '' }}">
                         
-                            <a href="{{route('sales.crm.dashboard')}}" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-layers-difference"></i></span><span
+                            <a href="{{route('sales.crm.dashboard')}}" class="dash-link"><span class="dash-micon">
+                                <!-- <i class="ti ti-layers-difference"></i>-->
+                                 <image src="{{asset('assets/images/menu/Sales&CRM.png')}}" width="20"></image>
+                                </span><span
                                 class="dash-mtext">{{ __('Sales')}} & {{__('CRM') }}</span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                            
@@ -426,8 +429,10 @@
                     Gate::check('manage print settings'))
                 <li
                     class="dash-item dash-hasmenu {{ Request::segment(1) == 'purchase-management-dashboard' ? ' active dash-trigger' : '' }}">
-                   <a href="{{route('purchase.management.dashboard')}}" class="dash-link d-flex"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
+                   <a href="{{route('purchase.management.dashboard')}}" class="dash-link d-flex"><span class="dash-micon">
+                    <!-- <i class="ti ti-layers-difference"></i> -->
+                     <image src="{{asset('assets/images/menu/Purchase & Management.png')}}" width="20"></image>
+                </span><span
                             class="dash-mtext">{{ __('Purchase & Management') }}</span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul
@@ -511,7 +516,10 @@
         @if (Gate::check('manage product & service') || Gate::check('manage product & service'))
             <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'production-dashboard' ? ' active dash-trigger' : '' }}">
                 <a href="{{route('production.dashboard')}}" class="dash-link ">
-                    <span class="dash-micon"><i class="ti ti-shopping-cart"></i></span><span
+                    <span class="dash-micon">
+                        <!-- <i class="ti ti-shopping-cart"></i> -->
+                         <image src="{{asset('assets/images/menu/Production.png')}}" width="20"></image>
+                </span><span
                         class="dash-mtext">{{ __('Production') }}</span><span class="dash-arrow">
                         <i data-feather="chevron-right"></i></span>
                 </a>
@@ -577,10 +585,14 @@
                                             Request::segment(1) == 'project_report'
                                                 ? 'active dash-trigger'
                                                 : '' }}">
-                    <a href="{{route('manufacturing.dashboard')}}" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-share"></i></span><span
-                            class="dash-mtext">{{ __('Manufacturing') }}</span><span class="dash-arrow"><i
-                                data-feather="chevron-right"></i></span></a>
+                    <a href="{{route('manufacturing.dashboard')}}" class="dash-link"><span class="dash-micon">
+                        <!-- <i class="ti ti-share"></i> -->
+                        <image src="{{asset('assets/images/menu/Manufacturing.png')}}" width="20"></image>
+
+                    </span><span
+                            class="dash-mtext">{{ __('Manufacturing') }}</span><span class="dash-arrow">
+                                <i data-feather="chevron-right"></i>
+                            </span></a>
                     <ul class="dash-submenu">
                       {{--   @can('manage project')
                             <li
@@ -663,7 +675,11 @@
                    @if (\Auth::user()->type == 'company')
             <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'notification_templates' ? 'active' : '' }}">
                 <a href="{{route('disptch.dashboard')}}" class="dash-link">
-                    <span class="dash-micon"><i class='bx bxs-truck' ></i></span><span
+                    <span class="dash-micon">
+                        <!-- <i class='bx bxs-truck' ></i> -->
+                        <image src="{{asset('assets/images/menu/Dispatch.png')}}" width="20"></image>
+
+                    </span><span
                         class="dash-mtext">{{ __('Dispatch') }}</span>
                 </a>
             </li>
@@ -673,7 +689,11 @@
                 <li class="dash-item dash-hasmenu">
                     <a href="{{ route('support.index') }}"
                         class="dash-link {{ Request::segment(1) == 'support' ? 'active' : '' }}">
-                        <span class="dash-micon"><i class="ti ti-headphones"></i></span><span
+                        <span class="dash-micon">
+                            <!-- <i class="ti ti-headphones"></i> -->
+                            <image src="{{asset('assets/images/menu/Service & Management.png')}}" width="20"></image>
+
+                        </span><span
                             class="dash-mtext">{{ __('Service & Management') }}</span>
                     </a>
                 </li>
@@ -708,8 +728,11 @@
                     Gate::check('manage print settings'))
                 <li
                     class="dash-item dash-hasmenu {{ Request::segment(1) == 'inventory-dashboard' ? 'active dash-trigger ' : '' }}">
-                    <a href="{{route('inventory.dashboard')}}" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
+                    <a href="{{route('inventory.dashboard')}}" class="dash-link"><span class="dash-micon">
+                        <!-- <i class="ti ti-layers-difference"></i> -->
+                        <image src="{{asset('assets/images/menu/Inventory.png')}}" width="20"></image>
+
+                    </span><span
                             class="dash-mtext">{{ __('Inventory') }}</span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul
@@ -846,8 +869,11 @@
                                      Request::segment(1) == 'debit-note'
                                          ? ' active dash-trigger'
                                          : '' }}">
-                        <a href="{{route('finance.dashboard')}}" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-box"></i></span><span
+                        <a href="{{route('finance.dashboard')}}" class="dash-link"><span class="dash-micon">
+                            <!-- <i class="ti ti-box"></i> -->
+                            <image src="{{asset('assets/images/menu/Finance.png')}}" width="20"></image>
+
+                        </span><span
                                 class="dash-mtext">{{ __('Finance ') }}
                             </span><span class="dash-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
@@ -1129,7 +1155,9 @@
                                 : '' }}">
                             <a href="{{route('hrms.dashboard')}}" class="dash-link ">
                                 <span class="dash-micon">
-                                    <i class="ti ti-user"></i>
+                                    <!-- <i class="ti ti-user"></i> -->
+                                    <image src="{{asset('assets/images/menu/Hrms.png')}}" width="20"></image>
+
                                 </span>
                                 <span class="dash-mtext">
                                     {{ __('HRMS') }}
@@ -1601,8 +1629,11 @@
                                 Request::segment(1) == 'reports-pos-vs-purchase'
                                     ? 'active dash-trigger'
                                     : '' }}">
-                    <a href="{{route('reports.dashboard')}}" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-share"></i></span><span
+                    <a href="{{route('reports.dashboard')}}" class="dash-link"><span class="dash-micon">
+                        <!-- <i class="ti ti-share"></i> -->
+                        <image src="{{asset('assets/images/menu/Reports.png')}}" width="20"></image>
+
+                    </span><span
                             class="dash-mtext">{{ __('Reports') }}</span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul class="dash-submenu">

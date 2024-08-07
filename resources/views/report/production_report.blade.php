@@ -496,7 +496,7 @@
                     <div class="row">
                         <div class="col-sm-4 form-group">
                             
-                         <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
+                         <a href="{{ route('productservice.index') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
                             Production List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
