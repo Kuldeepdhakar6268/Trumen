@@ -437,7 +437,11 @@
                     <div class="row">
                         <div class="col-sm-4 form-group">
                             
+<<<<<<< HEAD
                          <a href="<?php echo e(route('report.lead')); ?>" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
+=======
+                         <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
+>>>>>>> cb5ff179bf71d505b1f10a6774f38dd83439b857
                             Production List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
