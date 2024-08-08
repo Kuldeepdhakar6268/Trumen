@@ -438,10 +438,10 @@
                         <div class="col-sm-4 form-group">
                             
 <<<<<<< HEAD
-                         <a href="<?php echo e(route('report.lead')); ?>" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
-=======
                          <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
->>>>>>> cb5ff179bf71d505b1f10a6774f38dd83439b857
+=======
+                         <a href="<?php echo e(route('report.lead')); ?>" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
+>>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                             Production List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>

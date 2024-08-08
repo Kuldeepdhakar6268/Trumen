@@ -162,15 +162,10 @@
                     Gate::check('manage print settings')): ?>
                 <li
                     class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'purchase-management-dashboard' ? ' active dash-trigger' : ''); ?>">
-<<<<<<< HEAD
-                   <a href="<?php echo e(route('purchase.management.dashboard')); ?>" class="dash-link d-flex"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
-=======
                    <a href="<?php echo e(route('purchase.management.dashboard')); ?>" class="dash-link d-flex"><span class="dash-micon">
                     <!-- <i class="ti ti-layers-difference"></i> -->
                      <image src="<?php echo e(asset('assets/images/menu/Purchase & Management.png')); ?>" width="20"></image>
                 </span><span
->>>>>>> cb5ff179bf71d505b1f10a6774f38dd83439b857
                             class="dash-mtext"><?php echo e(__('Purchase & Management')); ?></span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul
@@ -342,15 +337,11 @@
                 <li class="dash-item dash-hasmenu">
                     <a href="<?php echo e(route('support.index')); ?>"
                         class="dash-link <?php echo e(Request::segment(1) == 'support' ? 'active' : ''); ?>">
-<<<<<<< HEAD
-                        <span class="dash-micon"><i class="ti ti-headphones"></i></span><span
-=======
                         <span class="dash-micon">
                             <!-- <i class="ti ti-headphones"></i> -->
                             <image src="<?php echo e(asset('assets/images/menu/Service & Management.png')); ?>" width="20"></image>
 
                         </span><span
->>>>>>> cb5ff179bf71d505b1f10a6774f38dd83439b857
                             class="dash-mtext"><?php echo e(__('Service & Management')); ?></span>
                     </a>
                 </li>
@@ -368,16 +359,11 @@
                     Gate::check('manage print settings')): ?>
                 <li
                     class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'inventory-dashboard' ? 'active dash-trigger ' : ''); ?>">
-<<<<<<< HEAD
-                    <a href="<?php echo e(route('inventory.dashboard')); ?>" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
-=======
                     <a href="<?php echo e(route('inventory.dashboard')); ?>" class="dash-link"><span class="dash-micon">
                         <!-- <i class="ti ti-layers-difference"></i> -->
                         <image src="<?php echo e(asset('assets/images/menu/Inventory.png')); ?>" width="20"></image>
 
                     </span><span
->>>>>>> cb5ff179bf71d505b1f10a6774f38dd83439b857
                             class="dash-mtext"><?php echo e(__('Inventory')); ?></span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul

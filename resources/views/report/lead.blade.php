@@ -45,11 +45,14 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5>{{ __('This Week Leads Conversions ') }}</h5>
+                                <h5>{{ __('This Week Leads Conversions ') }}</h5>
                             </div>
                             <div class="card-body"  style="display:inline;height:100px;">
                                 <div id="leads-this-week"
                                      data-color="primary"   data-height="480">
                                 </div>
+
+                                
 
                                 
                             </div>
@@ -473,7 +476,10 @@
                     chart: {
                         width: 200,
                         height:200,
+                        width: 200,
+                        height:200,
                     },
+                    
                     
                     legend: {
                         position: 'bottom',
@@ -512,6 +518,7 @@
                         opacity: 0.2
                     },
                     toolbar: {
+                        show: false                            
                         show: false                            
                     }
                 },
