@@ -89,15 +89,10 @@
                     <li
                         class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'sales-crm-dashboard' ? ' active dash-trigger' : ''); ?>">
                         
-<<<<<<< HEAD
                             <a href="<?php echo e(route('sales.crm.dashboard')); ?>" class="dash-link"><span class="dash-micon">
                                 <!-- <i class="ti ti-layers-difference"></i>-->
                                  <image src="<?php echo e(asset('assets/images/menu/Sales&CRM.png')); ?>" width="20"></image>
                                 </span><span
-=======
-                            <a href="<?php echo e(route('sales.crm.dashboard')); ?>" class="dash-link"><span class="dash-micon"><i
-                                    class="ti ti-layers-difference"></i></span><span
->>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                                 class="dash-mtext"><?php echo e(__('Sales')); ?> & <?php echo e(__('CRM')); ?></span><span class="dash-arrow"><i
                                     data-feather="chevron-right"></i></span></a>
                            
@@ -167,15 +162,10 @@
                     Gate::check('manage print settings')): ?>
                 <li
                     class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'purchase-management-dashboard' ? ' active dash-trigger' : ''); ?>">
-<<<<<<< HEAD
                    <a href="<?php echo e(route('purchase.management.dashboard')); ?>" class="dash-link d-flex"><span class="dash-micon">
                     <!-- <i class="ti ti-layers-difference"></i> -->
                      <image src="<?php echo e(asset('assets/images/menu/Purchase & Management.png')); ?>" width="20"></image>
                 </span><span
-=======
-                   <a href="<?php echo e(route('purchase.management.dashboard')); ?>" class="dash-link d-flex"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
->>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                             class="dash-mtext"><?php echo e(__('Purchase & Management')); ?></span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul
@@ -347,15 +337,11 @@
                 <li class="dash-item dash-hasmenu">
                     <a href="<?php echo e(route('support.index')); ?>"
                         class="dash-link <?php echo e(Request::segment(1) == 'support' ? 'active' : ''); ?>">
-<<<<<<< HEAD
                         <span class="dash-micon">
                             <!-- <i class="ti ti-headphones"></i> -->
                             <image src="<?php echo e(asset('assets/images/menu/Service & Management.png')); ?>" width="20"></image>
 
                         </span><span
-=======
-                        <span class="dash-micon"><i class="ti ti-headphones"></i></span><span
->>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                             class="dash-mtext"><?php echo e(__('Service & Management')); ?></span>
                     </a>
                 </li>
@@ -373,16 +359,11 @@
                     Gate::check('manage print settings')): ?>
                 <li
                     class="dash-item dash-hasmenu <?php echo e(Request::segment(1) == 'inventory-dashboard' ? 'active dash-trigger ' : ''); ?>">
-<<<<<<< HEAD
                     <a href="<?php echo e(route('inventory.dashboard')); ?>" class="dash-link"><span class="dash-micon">
                         <!-- <i class="ti ti-layers-difference"></i> -->
                         <image src="<?php echo e(asset('assets/images/menu/Inventory.png')); ?>" width="20"></image>
 
                     </span><span
-=======
-                    <a href="<?php echo e(route('inventory.dashboard')); ?>" class="dash-link"><span class="dash-micon"><i
-                                class="ti ti-layers-difference"></i></span><span
->>>>>>> f7fdef5dd2f342c2521a961f8098364f720e1e39
                             class="dash-mtext"><?php echo e(__('Inventory')); ?></span><span class="dash-arrow"><i
                                 data-feather="chevron-right"></i></span></a>
                     <ul
