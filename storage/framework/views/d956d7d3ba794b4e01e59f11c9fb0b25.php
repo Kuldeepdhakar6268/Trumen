@@ -411,7 +411,33 @@ input[type="text"]::-webkit-input-placeholder {
     
 });
 
-document.querySelector('#return-button').addEventListener('click', function(event) {
+document.querySelector('#show-div2 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('production-invoice');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+});
+
+document.querySelector('#return-button ').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default anchor behavior
     console.log("dslkfsdlkf")
     var targetDiv = document.getElementById('production-report-main');
@@ -431,6 +457,33 @@ document.querySelector('#return-button').addEventListener('click', function(even
     } else {
         targetDiv.style.display = 'none';
     }
+   
+});
+
+document.querySelector('#return-button2').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('production-invoice');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
    
 });
 </script>
@@ -537,8 +590,8 @@ document.querySelector('#return-button').addEventListener('click', function(even
                     </div>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
-                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
+                        <div class="col-sm-4 form-group" id="show-div2">
+                         <a href="#Production-invoice" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Production Invoice
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
@@ -546,7 +599,7 @@ document.querySelector('#return-button').addEventListener('click', function(even
                         </div> 
                         <div class="col-sm-4 form-group">
                             
-                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
+                         <a href="<?php echo e(route('productspecification.detail')); ?>" id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Production Records
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
@@ -683,7 +736,7 @@ document.querySelector('#return-button').addEventListener('click', function(even
     </div>
 
     <div id="Production-list" style="display:none;">
-    <div class="row mx-4 ">
+        <div class="row mx-4 ">
         <div class="card ">
         <div class="card-header d-flex gap-2">
                 <image id="return-button" class="mb-2" src="<?php echo e(asset('assets/images/Return-back.svg')); ?>"></image>
@@ -766,13 +819,7 @@ document.querySelector('#return-button').addEventListener('click', function(even
 
     <div class="row mx-3" >
         <div class="col-xl-12 ">
-
-        
-            
             <div class="card">
-            
-            
-            
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table datatable">
@@ -859,6 +906,360 @@ document.querySelector('#return-button').addEventListener('click', function(even
             </div>
                     </div>
                     </div>
+                    </div>
+
+<!-- Production Invoice-->
+
+    <div id="production-invoice" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button2" class="mb-2" src="<?php echo e(asset('assets/images/Return-back.svg')); ?>"></image>
+                <h4>Porduction Invoice</h4>
+            </div>
+         <?php echo e(Form::open(array('url' => 'product/searching'))); ?>
+
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="<?php echo e(__('Search')); ?>" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="<?php echo e(__('Date')); ?>" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        <?php echo e(Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px'))); ?>
+
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       <?php echo e(Form::select('status_id', $orderstatus,null, array('class' => 'form-control select'))); ?>
+
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <?php echo e(Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select'))); ?>
+
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             <?php echo e(Form::close()); ?>
+
+        <div class="col-sm-12">
+            <div class=" mt-2 <?php echo e(isset($_GET['category'])?'show':''); ?>" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        <?php echo e(Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service'])); ?>
+
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    <?php echo e(Form::label('category', __('Category'),['class'=>'form-label'])); ?>
+
+                                    <?php echo e(Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required'])); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="<?php echo e(__('apply')); ?>">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="<?php echo e(__('Reset')); ?>">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        <?php echo e(Form::close()); ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><?php echo e(__('No.')); ?></th>
+                                <th><?php echo e(__('Name')); ?></th>
+                                <th><?php echo e(__('Model')); ?></th>
+                                <th><?php echo e(__('Specification Order')); ?></th>
+                                <th><?php echo e(__('Sale Price')); ?></th>
+                                <th><?php echo e(__('Purchase Price')); ?></th>
+                                <th><?php echo e(__('Quantity')); ?></th>
+                                <th><?php echo e(__('Ticket Priority')); ?></th>
+                                <th><?php echo e(__('Ticket Status')); ?></th>
+                                <th><?php echo e(__('Order Status')); ?></th>
+                                <th><?php echo e(__('Action')); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                <?php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                ?>
+                                
+                            <?php $__currentLoopData = $productServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $productService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: <?php echo e(($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')))); ?>">
+                                                   <?php echo e(str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT)); ?></div></td>
+                                    <td>
+                                        <div class="hover-content"><?php echo e($productService->name); ?></div>
+                                                <div class="hover-trigger"><?php echo e(\Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...')); ?></div>
+                                        </td>
+                                    <td>
+                                        <?php echo e(\Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...')); ?>
+
+                                       </td>
+                                    <td>
+                                        <div class="hover-content"><?php echo e($productService->hsn_code == ''?'-':$productService->hsn_code); ?></div>
+                                                <div class="hover-trigger"><?php echo e($productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...')); ?></div>
+                                       </td>
+                                    <td><?php echo e(\Auth::user()->priceFormat($productService->sale_price)); ?></td>
+                                    <td><?php echo e(\Auth::user()->priceFormat($productService->purchase_price )); ?></td>
+                                    <td><?php echo e($productService->quantity == 0?1:$productService->quantity); ?></td>
+                                    <td><?php echo e($productService->ticket_priority); ?></td>
+                                    <td><?php echo e($productService->ticket_status); ?></td>
+                                    <td><?php echo e(($productService->status == 1)?'Received':(($productService->status == 4)?'Resolved':(($productService->status == 5)?'Dispatch':(($productService->status == 3)?'Reporting':'Testing')))); ?></td>
+                                    <?php if(Gate::check('edit product & service') || Gate::check('delete product & service')): ?>
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="<?php echo e(route('productservice.detail',$productService->id)); ?>" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Product Details')); ?>" data-title="<?php echo e(__('Product Details')); ?>">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit product & service')): ?>
+                                                <div class="action-btn bg-light ms-2">
+                                                    <a href="<?php echo e(route('productservice.edit',$productService->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>"  data-title="<?php echo e(__('Edit Product')); ?>">
+                                                        <i class="ti ti-pencil text-dark"></i>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete product & service')): ?>
+                                                <div class="action-btn bg-danger ms-2">
+                                                    <?php echo Form::open(['method' => 'DELETE', 'route' => ['productservice.destroy', $productService->id],'id'=>'delete-form-'.$productService->id]); ?>
+
+                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>" ><i class="ti ti-trash text-white"></i></a>
+                                                    <?php echo Form::close(); ?>
+
+                                                </div>
+                                            <?php endif; ?> 
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    <!--product record-->
+
+
+                    
+                    <div id="production-Records" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button3" class="mb-2" src="<?php echo e(asset('assets/images/Return-back.svg')); ?>"></image>
+                <h4>Porduction Records</h4>
+            </div>
+         <?php echo e(Form::open(array('url' => 'product/searching'))); ?>
+
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="<?php echo e(__('Search')); ?>" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="<?php echo e(__('Date')); ?>" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        <?php echo e(Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px'))); ?>
+
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       <?php echo e(Form::select('status_id', $orderstatus,null, array('class' => 'form-control select'))); ?>
+
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <?php echo e(Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select'))); ?>
+
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             <?php echo e(Form::close()); ?>
+
+        <div class="col-sm-12">
+            <div class=" mt-2 <?php echo e(isset($_GET['category'])?'show':''); ?>" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        <?php echo e(Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service'])); ?>
+
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    <?php echo e(Form::label('category', __('Category'),['class'=>'form-label'])); ?>
+
+                                    <?php echo e(Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required'])); ?>
+
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="<?php echo e(__('apply')); ?>">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="<?php echo e(__('Reset')); ?>">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        <?php echo e(Form::close()); ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th><?php echo e(__('No.')); ?></th>
+                                <th><?php echo e(__('Name')); ?></th>
+                                <th><?php echo e(__('Model')); ?></th>
+                                <th><?php echo e(__('Specification Order')); ?></th>
+                                <th><?php echo e(__('Sale Price')); ?></th>
+                                <th><?php echo e(__('Purchase Price')); ?></th>
+                                <th><?php echo e(__('Quantity')); ?></th>
+                                <th><?php echo e(__('Ticket Priority')); ?></th>
+                                <th><?php echo e(__('Ticket Status')); ?></th>
+                                <th><?php echo e(__('Order Status')); ?></th>
+                                <th><?php echo e(__('Action')); ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                <?php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                ?>
+                                
+                            <?php $__currentLoopData = $productServices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $productService): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: <?php echo e(($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')))); ?>">
+                                                   <?php echo e(str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT)); ?></div></td>
+                                    <td>
+                                        <div class="hover-content"><?php echo e($productService->name); ?></div>
+                                                <div class="hover-trigger"><?php echo e(\Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...')); ?></div>
+                                        </td>
+                                    <td>
+                                        <?php echo e(\Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...')); ?>
+
+                                       </td>
+                                    <td>
+                                        <div class="hover-content"><?php echo e($productService->hsn_code == ''?'-':$productService->hsn_code); ?></div>
+                                                <div class="hover-trigger"><?php echo e($productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...')); ?></div>
+                                       </td>
+                                    <td><?php echo e(\Auth::user()->priceFormat($productService->sale_price)); ?></td>
+                                    <td><?php echo e(\Auth::user()->priceFormat($productService->purchase_price )); ?></td>
+                                    <td><?php echo e($productService->quantity == 0?1:$productService->quantity); ?></td>
+                                    <td><?php echo e($productService->ticket_priority); ?></td>
+                                    <td><?php echo e($productService->ticket_status); ?></td>
+                                    <td><?php echo e(($productService->status == 1)?'Received':(($productService->status == 4)?'Resolved':(($productService->status == 5)?'Dispatch':(($productService->status == 3)?'Reporting':'Testing')))); ?></td>
+                                    <?php if(Gate::check('edit product & service') || Gate::check('delete product & service')): ?>
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="<?php echo e(route('productservice.detail',$productService->id)); ?>" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Product Details')); ?>" data-title="<?php echo e(__('Product Details')); ?>">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit product & service')): ?>
+                                                <div class="action-btn bg-light ms-2">
+                                                    <a href="<?php echo e(route('productservice.edit',$productService->id)); ?>" class="mx-3 btn btn-sm  align-items-center" data-bs-toggle="tooltip" title="<?php echo e(__('Edit')); ?>"  data-title="<?php echo e(__('Edit Product')); ?>">
+                                                        <i class="ti ti-pencil text-dark"></i>
+                                                    </a>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete product & service')): ?>
+                                                <div class="action-btn bg-danger ms-2">
+                                                    <?php echo Form::open(['method' => 'DELETE', 'route' => ['productservice.destroy', $productService->id],'id'=>'delete-form-'.$productService->id]); ?>
+
+                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="<?php echo e(__('Delete')); ?>" ><i class="ti ti-trash text-white"></i></a>
+                                                    <?php echo Form::close(); ?>
+
+                                                </div>
+                                            <?php endif; ?> 
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Trumen\resources\views/report/production_report.blade.php ENDPATH**/ ?>
