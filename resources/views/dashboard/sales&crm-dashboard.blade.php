@@ -56,9 +56,10 @@
                             if(data.is_success == true){
                                Swal.fire({
                               title: "Read!",
-                              text: "Your has been seen the reminder.",
+                              text: "Reminder has been seen.",
                               icon: "success"
-                            });  
+                            }); 
+                            window.location.reload();  
                             }else{
                                 Swal.fire({
                               title: "fieled!",
