@@ -47,6 +47,7 @@ use App\Models\StockReport;
 use App\Models\Tax;
 use App\Models\TransactionLines;
 use App\Models\User;
+
 use App\Models\UserDeal;
 use App\Models\Utility;
 use App\Models\Vender;
@@ -54,6 +55,7 @@ use App\Models\warehouse;
 use App\Models\WarehouseProduct;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\ProductService;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
@@ -4801,6 +4803,28 @@ class ReportController extends Controller
         $invoiceItems->where('quotations.order_status', '=', 'Complete');
         $invoiceItems->groupBy('quotation_products.product_id');
         $invoiceItems = $invoiceItems->get()->toArray();
+        $productServices = ProductService::where('created_by', '=', \Auth::user()->creatorId())->with(['category','unit','code','group','material'])->orderBy('id', 'desc')->get();
+        $users = User::where('type', '=', 'client')->get()->pluck('name', 'id');
+
+        $orderstatus = [
+                    
+            'Received',
+            'Testing',
+            'Repairing',
+            'Dispatch',
+            'Resolved'
+            ];
+
+            $ticketstatus = [
+                'Open',
+                'Hold',
+                'On-Going',
+                'Closed'
+            ];
+
+            $category = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 'product & service')->get()->pluck('name', 'id');
+            $category->prepend('Select Category', '');
+
 
         $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
             ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
@@ -4841,7 +4865,7 @@ class ReportController extends Controller
         $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
         $currentYear = date('Y');
 //  dd($filter);
-        return view('report.production_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+        return view('report.production_report', compact('filter','category','ticketstatus','orderstatus', 'productServices', 'users', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
     }
 
     public function purchaseManagementReport(Request $request)

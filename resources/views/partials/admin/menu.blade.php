@@ -356,10 +356,9 @@
                        
                     <li
                         class="dash-item dash-hasmenu {{ Request::segment(1) == 'sales-crm-dashboard' ? ' active dash-trigger' : '' }}">
-                        class="dash-item dash-hasmenu {{ Request::segment(1) == 'sales-crm-dashboard' ? ' active dash-trigger' : '' }}">
+                       
                         
                             <a href="{{route('sales.crm.dashboard')}}" class="dash-link"><span class="dash-micon">
-                                <!-- <i class="ti ti-layers-difference"></i>-->
                                  <image src="{{asset('assets/images/menu/Sales&CRM.png')}}" width="20"></image>
                                 </span><span
                                 class="dash-mtext">{{ __('Sales')}} & {{__('CRM') }}</span><span class="dash-arrow"><i
@@ -369,7 +368,7 @@
                        
                         <ul
                             class="dash-submenu">
-                            class="dash-submenu">
+                           
                            
                             @can('manage lead')
                             @if(\Auth::user()->type == 'user')
@@ -435,7 +434,6 @@
                 <li
                     class="dash-item dash-hasmenu {{ Request::segment(1) == 'purchase-management-dashboard' ? ' active dash-trigger' : '' }}">
                    <a href="{{route('purchase.management.dashboard')}}" class="dash-link d-flex"><span class="dash-micon">
-                    <!-- <i class="ti ti-layers-difference"></i> -->
                      <image src="{{asset('assets/images/menu/Purchase & Management.png')}}" width="20"></image>
                 </span><span
                             class="dash-mtext">{{ __('Purchase & Management') }}</span><span class="dash-arrow"><i
@@ -578,7 +576,7 @@
                 <li
                     class="dash-item dash-hasmenu
                                             {{ Request::segment(1) == 'manufacturing-dashboard' ||
-                                            {{ Request::segment(1) == 'manufacturing-dashboard' ||
+                                           
                                             Request::segment(1) == 'bugs-report' ||
                                             Request::segment(1) == 'bugstatus' ||
                                             Request::segment(1) == 'project-task-stages' ||
@@ -689,6 +687,20 @@
                     </span><span
                         class="dash-mtext">{{ __('Dispatch') }}</span>
                 </a>
+                <ul
+                        class="dash-submenu">
+                       
+                         <li class="dash-item">
+                            <a href="#"
+                                class="dash-link">{{ __('Challan') }}
+                            </a>
+                        </li>
+                         <li class="dash-item">
+                            <a href="#"
+                                class="dash-link">{{ __('Dispatch List') }}
+                            </a>
+                        </li>
+                      </ul>
             </li>
         @endif
       
@@ -744,7 +756,7 @@
                                 data-feather="chevron-right"></i></span></a>
                     <ul
                         class="dash-submenu">
-                        class="dash-submenu">
+                       
                           @can('stock report')   
                           
                             <li class="dash-item {{ Request::segment(1) == 'productstock' ? 'active' : '' }}">
@@ -827,7 +839,7 @@
                                     href="{{ route('pos.print.setting') }}">{{ __('Order request') }}</a>
                             </li>
                         @endcan --}}
-                        @endcan --}}
+                       
 
                     </ul>
                 </li>
@@ -1633,8 +1645,6 @@
                 <li
                     class="dash-item dash-hasmenu
                                             {{ Request::segment(1) == 'reports-dashboard' ||
-                                            {{ Request::segment(1) == 'reports-dashboard' ||
-                               
                                 Request::segment(1) == 'income report' ||
                                 Request::segment(1) == 'report' ||
                                 Request::segment(1) == 'reports-monthly-cashflow' ||
@@ -1665,39 +1675,39 @@
                             <li
                                 class="dash-item  {{ Request::segment(1) == 'project' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.list' || Request::route()->getName() == 'projects.index' || Request::route()->getName() == 'projects.show' || request()->is('projects/*') ? 'active' : '' }}">
                                 <a class="dash-link" href="{{route('report.sales')}}">{{ __('Sales & CRM Reports') }}</a>
-                                <a class="dash-link" href="{{route('report.sales')}}">{{ __('Sales & CRM Reports') }}</a>
+                               
                             </li>
                         @endcan
                         @can('manage project task')
                             <li class="dash-item {{ request()->is('taskboard*') ? 'active' : '' }}">
                                 <a class="dash-link"
                                     href="{{route('report.production')}}">{{ __('Production Report') }}</a>
-                                    href="{{route('report.production')}}">{{ __('Production Report') }}</a>
+                                   
                             </li>
                         @endcan
                         @can('manage timesheet')
                             <li class="dash-item {{ request()->is('timesheet-list*') ? 'active' : '' }}">
                                 <a class="dash-link" href="{{route('report.purchase_management')}}">{{ __('Purchase & Management Report') }}</a>
-                                <a class="dash-link" href="{{route('report.purchase_management')}}">{{ __('Purchase & Management Report') }}</a>
+                               
                             </li>
                         @endcan
                         @can('manage bug report')
                             <li class="dash-item {{ request()->is('bugs-report*') ? 'active' : '' }}">
                                 <a class="dash-link" href="{{route('report.inventory')}}">{{ __('Inventory Report') }}</a>
-                                <a class="dash-link" href="{{route('report.inventory')}}">{{ __('Inventory Report') }}</a>
+                               
                             </li>
                         @endcan
                         @can('manage project task')
                             <li class="dash-item {{ request()->is('calendar*') ? 'active' : '' }}">
                                 <a class="dash-link"
                                     href="{{route('support.index')}}">{{ __('Service & Management Report') }}</a>
-                                    href="{{route('support.index')}}">{{ __('Service & Management Report') }}</a>
+                                  
                             </li>
                         @endcan
                         @if (\Auth::user()->type != 'super admin')
                             <li class="dash-item  {{ Request::segment(1) == 'time-tracker' ? 'active open' : '' }}">
                                 <a class="dash-link" href="{{route('report.finance')}}">{{ __('Finance Report') }}</a>
-                                <a class="dash-link" href="{{route('report.finance')}}">{{ __('Finance Report') }}</a>
+                               
                             </li>
                         @endif
                         {{--
@@ -1712,8 +1722,7 @@
 
                         --}}
                         {{--
-                        --}}
-                        {{--
+                       
                         @if (Gate::check('manage project task stage') || Gate::check('manage bug status'))
                             <li
                                 class="dash-item dash-hasmenu {{ Request::segment(1) == 'bugstatus' || Request::segment(1) == 'project-task-stages' ? 'active dash-trigger' : '' }}">
