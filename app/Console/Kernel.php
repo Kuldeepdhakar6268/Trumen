@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\LeadStore;
+use App\Console\Commands\SendReminder;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -17,12 +18,14 @@ class Kernel extends ConsoleKernel
     protected $commands = [
        
         LeadStore::class,
+        SendReminder::class,
         
     ];
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
          $schedule->command('leadStore:run')->everySixHoures();
+         $schedule->command('reminder:send')->daily(); // Example schedule
     }
 
     /**

@@ -8,9 +8,10 @@
 @endsection
 
 @push('css-page')
-   
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.min.css">
+   <style>
     /* Hide default arrow */
 input[type="text"]::-webkit-input-placeholder {
     color: red;
@@ -49,9 +50,42 @@ input[type="text"]::-webkit-input-placeholder {
 @endpush
 
 @push('script-page')
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     <script type="text/javascript" src="{{ asset('js/html2pdf.bundle.min.js') }}"></script>
+    
+    <script type="text/javascript">
+        window.onload = function() {
+            $(function () {
+                $('#production-list-data').DataTable().ajax.reload(); 
+    var table = $('#production-list-data').DataTable({
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        destroy: true,
+        ajax: "{{ route('report.product.list') }}",
+        columns: [
+                        { data: 'DT_RowIndex', name: 'id',render:function(data){
+                            return numbertrans(data)
+                        }},
+                        {data: 'name', name: 'name'},
+                        {data: 'has_code', name: 'has_code'},
+                        {data: 'base_price', name: 'base_price'},
+                        {data: 'created_at', name: 'created_at'},
+                        {data: 'action', name: 'action', orderable: false, searchable: false},
+
+                    ],
+        
+    });
+      
+  });
+};
+ 
+</script>
     <script>
      (function () {
             var options = {
@@ -403,7 +437,33 @@ input[type="text"]::-webkit-input-placeholder {
     
 });
 
-document.querySelector('#return-button').addEventListener('click', function(event) {
+document.querySelector('#show-div2 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('production-invoice');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+});
+
+document.querySelector('#return-button ').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default anchor behavior
     console.log("dslkfsdlkf")
     var targetDiv = document.getElementById('production-report-main');
@@ -425,6 +485,779 @@ document.querySelector('#return-button').addEventListener('click', function(even
     }
    
 });
+
+document.querySelector('#return-button2').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('production-invoice');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+   
+});
+
+document.querySelector('#show-div3 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('production-records');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button3').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('production-records');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+
+
+
+document.querySelector('#show-div4 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('product-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button4').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('product-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div5 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('damage-product-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button5').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('damage-product-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div6 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('dead-product-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button6').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('dead-product-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div7 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-purchase-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button7').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-purchase-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div8 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button8').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div9 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('damage-material-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button9').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('damage-material-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div10 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-purchase-invoice');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button10').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-purchase-invoice');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div11 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('dead-material-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button11').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('dead-material-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div12 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-ledger');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button12').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-ledger');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div13 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-stock');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button13').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-stock');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div14 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('material-purchase-records');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button14').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('material-purchase-records');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div15 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('vendor-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('production-report-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button15').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('vendor-list');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('production-report-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+
 </script>
 
 @endpush
@@ -596,35 +1429,35 @@ document.querySelector('#return-button').addEventListener('click', function(even
                     </div>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
-                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
+                        <div class="col-sm-4 form-group" id="show-div2">
+                         <a href="#Production-invoice" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Production Invoice
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div3">
                             
-                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
+                         <a href="#production-records"   class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Production Records
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
-                         <a id="payment-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
+                        <div class="col-sm-4 form-group" id="show-div4">
+                         <a  id="product list" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Product List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div5">
                          <a id="proposal-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
-                             Demage Product List
+                             Damage Product List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div6">
                          <a id="customer-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Dead Product List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -642,21 +1475,21 @@ document.querySelector('#return-button').addEventListener('click', function(even
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div7">
                         
                          <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Material Purchase List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div8">
                         <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
                              Material List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div9">
                           <a id="customer-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
                             Damage Material List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -664,21 +1497,21 @@ document.querySelector('#return-button').addEventListener('click', function(even
                          
                         </div> 
 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div10">
                         
                          <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Material Purchase Invoice
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div14">
                         <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
                              Material Purchase Records
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div11">
                           <a id="customer-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
                             Dead Material List
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -686,14 +1519,14 @@ document.querySelector('#return-button').addEventListener('click', function(even
                          
                         </div> 
 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div12">
                         
                          <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Material Ledger
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div13">
                         <a id="transaction-select" class="btn btn-outline-secondary btn-lg" style="width:300px;">
                              Material Stock
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -720,7 +1553,7 @@ document.querySelector('#return-button').addEventListener('click', function(even
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div15">
                         
                          <a id="income-select" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                             Vendor List
@@ -742,7 +1575,7 @@ document.querySelector('#return-button').addEventListener('click', function(even
     </div>
 
     <div id="Production-list" style="display:none;">
-    <div class="row mx-4 ">
+        <div class="row mx-4 ">
         <div class="card ">
         <div class="card-header d-flex gap-2">
                 <image id="return-button" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
@@ -816,28 +1649,121 @@ document.querySelector('#return-button').addEventListener('click', function(even
 
     <div class="row mx-3" >
         <div class="col-xl-12 ">
-
-        
-            
             <div class="card">
-            
-            
-            
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable" id="production-list-data">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Code')}}</th>
+                                <th>{{__('Price')}}</th>
+                                <th>{{__('Created At')}}</th>
+                               
+                                <th>{{__('Action')}}</th>
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+                    </div>
+
+<!-- Production Invoice-->
+
+    <div id="production-invoice" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button2" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Porduction Invoice</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3">
+        <div class="col-xl-12">
+            <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table datatable">
                             <thead class="thead-dark">
                             <tr>
                                 <th>{{__('No.')}}</th>
-                                <th>{{__('Name')}}</th>
-                                <th>{{__('Model')}}</th>
-                                <th>{{__('Specification Order')}}</th>
-                                <th>{{__('Sale Price')}}</th>
-                                <th>{{__('Purchase Price')}}</th>
-                                <th>{{__('Quantity')}}</th>
-                                <th>{{__('Ticket Priority')}}</th>
-                                <th>{{__('Ticket Status')}}</th>
-                                <th>{{__('Order Status')}}</th>
+                                <th>{{__('Product Code')}}</th>
+                                <th>{{__('Product Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Unit Rate')}}</th>
                                 <th>{{__('Action')}}</th>
                             </tr>
                             </thead>
@@ -906,5 +1832,1865 @@ document.querySelector('#return-button').addEventListener('click', function(even
             </div>
                     </div>
                     </div>
+                    </div>
+                    <!--product record-->
+
+
+                    
+<div id="production-records" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button3" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Porduction Records</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3">
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Invoice Number')}}</th>
+                                <th>{{__('Incharge')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Labor Cost')}}</th>
+                                <th>{{__('Material Cost')}}</th>
+                                <th>{{__('Other Cost')}}</th>
+                                <th>{{__('Total Cost')}}</th>
+                              
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                    <td>{{$productService->ticket_priority}}</td>
+                                    <td>{{$productService->ticket_status}}</td>
+                                   
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+
+                    <!--Product list-->
+
+<div id="product-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button4" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Product List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Product Code')}}</th>
+                                <th>{{__('Product Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                               
+                                <th>{{__('Quantity')}}</th>
+                             
+                                <th>{{__('Stock Value')}}</th>
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                    <!-- Damage Product List-->
+
+<div id="damage-product-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button5" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Damage Product List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Product Code')}}</th>
+                                <th>{{__('Product Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                    
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                           
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                    <!--Dead Product List-->
+    <div id="dead-product-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button6" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Dead Product List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Product Code')}}</th>
+                                <th>{{__('Product Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                               
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                         
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                                        <!--Materia Purchase List-->
+    <div id="material-purchase-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button7" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Material Purchase List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                         
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+       <!--Materia List-->
+    <div id="material-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button8" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Material List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                          
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+
+                                    <!--Damage Materia List-->
+                                    <div id="damage-material-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button9" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Damage Material List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Unit Rate')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                         
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                                    <!--Materia Purchase Invoice-->
+                                    <div id="material-purchase-invoice" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button10" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Material Purchase Invoice</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Invoice Number')}}</th>
+                                <th>{{__('Vendor')}}</th>
+                                <th>{{__('Created by')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Unit Rate')}}</th>
+                                
+                                <th>{{__('Transport')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                    <td>{{$productService->ticket_priority}}</td>
+                                    <td>{{$productService->ticket_priority}}</td>
+                                  
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+
+     <!--Materia Purchase Record-->
+    <div id="material-purchase-records" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button14" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Material Purchase Records</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                    
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                           
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+
+ <!-- Dead Materia List -->
+    <div id="dead-material-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button11" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Dead Material List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    @if(Gate::check('edit product & service') || Gate::check('delete product & service'))
+                                        <td class="Action">
+
+                                            <div class="action-btn bg-light ms-2">
+                                                <a href="{{ route('productservice.detail',$productService->id) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Product Details')}}" data-title="{{__('Product Details')}}">
+                                                    <i class="ti ti-eye text-dark"></i>
+                                                </a>
+                                            </div>
+
+                                           
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+                     <!--  Material Ledger -->
+    <div id="material-ledger" style="display:none;">
+    <div class="row mx-4">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button12" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Material Ledger</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Date')}}</th>
+                                <th>{{__('Description')}}</th>
+                                <th>{{__('Unit Rate')}}</th>
+                                <th>{{__('in Quantity')}}</th>
+                              
+                                <th>{{__('Out Quantity')}}</th>
+                                <th>{{__('Stock')}}</th>
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                    
+                                    
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>
+
+
+
+   <!--  Materia Stock -->
+   <div id="material-stock" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button13" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4> Material Stock</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                            <th>{{__('No.')}}</th>
+                                <th>{{__('Material Code')}}</th>
+                                <th>{{__('Material Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Created Time')}}</th>
+                                <th>{{__('Quantity')}}</th>
+                                <th>{{__('Stock Value')}}</th>
+                                
+                                <th>{{__('Action')}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>    
+                    
+     <!-- Vendor List -->
+     <div id="vendor-list" style="display:none;">
+    <div class="row mx-4 ">
+        <div class="card ">
+        <div class="card-header d-flex gap-2">
+                <image id="return-button15" class="mb-2" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+                <h4>Vendor List</h4>
+            </div>
+         {{ Form::open(array('url' => 'product/searching')) }}
+               <div class="row py-3">
+                  
+                    <div class="col-sm-1 form-group">
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
+                      
+                   </div>
+                   <div class="col-sm-2 form-group">
+                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
+                       {{--<img src="{{ asset('assets/images/date-icon.png') }}" width="30" alt="india" style="position: absolute;margin-top: -37px;margin-left: 110px;" id="dateIcon"/>--}}
+                   </div>
+                    <div class="col-sm-3 form-group">
+                       <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
+                        {{ Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px')) }}
+                   </div>
+                  
+                   <div class="col-sm-2 form-group" style="margin-left: -22px;">
+                       {{ Form::select('status_id', $orderstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       {{ Form::select('ticket_status_id', $ticketstatus,null, array('class' => 'form-control select')) }}
+                   </div>
+                   <div class="col-sm-2 form-group">
+                       <select class="form-control select" name="priority_id">
+                           <option value="0">Ticket Priority</option>
+                           <option value="1">Low</option>
+                           <option value="2">Medium</option>
+                           <option value="3">High</option>
+                           </select>
+                   </div>
+                  
+            </div>
+             {{Form::close()}}
+        <div class="col-sm-12">
+            <div class=" mt-2 {{isset($_GET['category'])?'show':''}}" id="multiCollapseExample1">
+                
+                    <div class="card-body">
+                        {{ Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service']) }}
+                        <div class="d-flex align-items-center justify-content-end">
+                            <div class="col-xl-3 col-lg-3 col-md-6">
+                                <div class="btn-box">
+                                    {{ Form::label('category', __('Category'),['class'=>'form-label']) }}
+                                    {{ Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required']) }}
+                                </div>
+                            </div>
+                            <div class="col-auto float-end ms-2 mt-4">
+                                <a href="#" class="btn btn-sm btn-primary"
+                                   onclick="document.getElementById('product_service').submit(); return false;"
+                                   data-bs-toggle="tooltip" title="{{ __('apply') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                </a>
+                                <a href="{{ route('productservice.index') }}" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
+                                   title="{{ __('Reset') }}">
+                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
+                                </a>
+                            </div>
+
+                        </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                    
+
+    <div class="row mx-3" >
+        <div class="col-xl-12 ">
+            <div class="card">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table datatable">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>{{__('No.')}}</th>
+                                <th>{{__('Vendor Name')}}</th>
+                                <th>{{__('Company Name')}}</th>
+                                <th>{{__('Created Date')}}</th>
+                                <th>{{__('Address')}}</th>
+                                <th>{{__('Contact Number')}}</th>
+                                <th>{{__('Previous Due')}}</th>
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                                                @php 
+                                                
+                                                $width = 2; // Desired width
+                                                $paddingChar = '0'; // Character used for padding
+                                              
+                                                @endphp
+                                
+                            @foreach ($productServices as $productService)
+                                               
+                                <tr class="font-style">
+                                     <td> <div class="number-color" style="font-size:12px;width: 60px;height: 46px;border-radius: 17px 0px 0px 17px;background-color: {{($productService->status == 1)?'#9199a0':(($productService->status == 4)?'#0AA350':(($productService->status == 5)?'#693599':(($productService->status == 3)?'#24A9F9':'#E91C2B')));}}">
+                                                   {{ str_pad($loop->iteration, $width, $paddingChar, STR_PAD_LEFT) }}</div></td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->name }}</div>
+                                                <div class="hover-trigger">{{ \Illuminate\Support\Str::limit($productService->name, $limit = 15, $end = '...') }}</div>
+                                        </td>
+                                    <td>
+                                        {{  \Illuminate\Support\Str::limit(!empty($productService->productModels)?$productService->productModels->name:'', $limit = 15, $end = '...') }}
+                                       </td>
+                                    <td>
+                                        <div class="hover-content">{{  $productService->hsn_code == ''?'-':$productService->hsn_code }}</div>
+                                                <div class="hover-trigger">{{ $productService->hsn_code == ''?'-':\Illuminate\Support\Str::limit($productService->hsn_code, $limit = 15, $end = '...') }}</div>
+                                       </td>
+                                    <td>{{ \Auth::user()->priceFormat($productService->sale_price) }}</td>
+                                    <td>{{  \Auth::user()->priceFormat($productService->purchase_price )}}</td>
+                                    <td>{{$productService->quantity == 0?1:$productService->quantity}}</td>
+                                   
+                                   
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                    </div>
+
+                    </div>                
+
+
 
 @endsection

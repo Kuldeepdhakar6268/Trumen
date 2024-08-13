@@ -646,6 +646,7 @@ Route::group(['middleware' => ['verified']], function () {
             Route::get('report/sales', [ReportController::class, 'salesReport'])->name('report.sales');
             
             Route::get('report/production', [ReportController::class, 'productionReport'])->name('report.production');
+            Route::get('report/product/list', [ReportController::class, 'productList'])->name('report.product.list');
             Route::get('report/purchase-management',[ReportController::class,'purchaseManagementReport'])->name('report.purchase_management');
             Route::get('report/inventory', [ReportController::class, 'inventoryReport'])->name('report.inventory');
             Route::get('report/finance', [ReportController::class, 'financeReport'])->name('report.finance');

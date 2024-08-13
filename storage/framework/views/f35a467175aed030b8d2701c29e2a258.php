@@ -47,33 +47,27 @@
                         type: 'POST',
                         url: url,
                         data: {
-                           
                             'id': id,
-                            
                             'session_key': session_key,
                             '_token': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function (data) {
                             if(data.is_success == true){
-                               Swal.fire({
+                            Swal.fire({
                               title: "Read!",
-                              text: "Your has been seen the reminder.",
+                              text: "Reminder has been seen.",
                               icon: "success"
-                            });  
+                            }); 
+                            window.location.reload();  
                             }else{
-                                Swal.fire({
+                            Swal.fire({
                               title: "fieled!",
                               text: "fieled.",
                               icon: "error"
                             });
                                 
                             }
-                           
-                            
                             }
-                        
-                           
-                           
                     });
            
           }
