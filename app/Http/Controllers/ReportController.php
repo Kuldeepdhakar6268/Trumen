@@ -39,6 +39,7 @@ use App\Models\Payment;
 use App\Models\PaySlip;
 use App\Models\Pipeline;
 use App\Models\Pos;
+use App\Models\OrderRequest;
 use App\Models\ProductServiceCategory;
 use App\Models\Purchase;
 use App\Models\Revenue;
@@ -57,7 +58,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\ProductService;
 use Maatwebsite\Excel\Facades\Excel;
-
+use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
 
@@ -4869,6 +4870,8 @@ class ReportController extends Controller
     }
 
     public function purchaseManagementReport(Request $request)
+
+
     {
         if (!empty($request->start_date) && !empty($request->end_date)) {
             $start = $request->start_date;
@@ -4886,7 +4889,22 @@ class ReportController extends Controller
         $invoiceItems->where('quotations.order_status', '=', 'Complete');
         $invoiceItems->groupBy('quotation_products.product_id');
         $invoiceItems = $invoiceItems->get()->toArray();
-
+        $venders = Vender::where('created_by', \Auth::user()->creatorId())->get();
+        $users = User::where('type', '=', 'company')->get()->pluck('name', 'id');
+        $users->prepend(__('Converted by'), '');
+        $orders = OrderRequest::all();
+        $products       = ProductService::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
+        $products->prepend(__('Product'), '');
+        $industry = DB::table('leads')->where('industry_name', '!=', '')->select('industry_name as name', 'id')->get()->pluck('name','id');
+        //  dd($industry);
+        $industry->prepend(__('Industry'), '');
+       
+        $states = DB::table('states')->where('country_id', 101)->get()->pluck('name','id');
+        $states->prepend(__('State'), '');
+        $emp     = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('id', '!=', \Auth::user()->id)->get();
+        $status = DB::table('status')->get()->pluck('name','id');
+        $status->prepend(__('Status'), '');
+        $date= '';
         $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
             ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
             ->selectRaw('(SELECT SUM((price * quantity - discount) * (taxes.rate / 100)) FROM quotation_products
@@ -4926,7 +4944,7 @@ class ReportController extends Controller
         $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
         $currentYear = date('Y');
 //  dd($filter);
-        return view('report.purchase_management_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+        return view('report.purchase_management_report', compact('filter','date','emp','status','orders','industry','states','products','users','venders', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
     }
 
     public function inventoryReport(Request $request)
@@ -4947,6 +4965,7 @@ class ReportController extends Controller
         $invoiceItems->where('quotations.order_status', '=', 'Complete');
         $invoiceItems->groupBy('quotation_products.product_id');
         $invoiceItems = $invoiceItems->get()->toArray();
+        $productServices = ProductService::where('created_by', '=', \Auth::user()->creatorId())->with(['category','unit','code','group','material'])->orderBy('id', 'desc')->get();
 
         $invoiceCustomeres = Quotation::select('customers.name', \DB::raw('count(DISTINCT quotations.customer_id, quotation_products.quotation_id) as invoice_count'))
             ->selectRaw('sum((quotation_products.price * quotation_products.quantity) - quotation_products.discount) as price')
@@ -4987,7 +5006,7 @@ class ReportController extends Controller
         $incExpLineChartData = \Auth::user()->getIncExpLineChartDate();
         $currentYear = date('Y');
 //  dd($filter);
-        return view('report.inventory_report', compact('filter', 'currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
+        return view('report.inventory_report', compact('filter', 'productServices','currentYear', 'incExpBarChartData', 'incExpLineChartData', 'invoiceItems', 'invoiceCustomers'));
     }
 
     
