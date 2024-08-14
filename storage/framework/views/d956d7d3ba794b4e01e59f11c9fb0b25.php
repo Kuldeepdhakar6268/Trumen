@@ -12,6 +12,12 @@
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> -->
+
    <style>
     /* Hide default arrow */
 input[type="text"]::-webkit-input-placeholder {
@@ -51,39 +57,237 @@ input[type="text"]::-webkit-input-placeholder {
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('script-page'); ?>
-<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/buttons/3.1.1/js/dataTables.buttons.min.js"></script> -->
+
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://hammerjs.github.io/dist/hammer.js"></script>
     <script type="text/javascript" src="<?php echo e(asset('js/html2pdf.bundle.min.js')); ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+   
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Initialize the datepickers
+    $("#min-date, #max-date").datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
+    <!-- <script>
+        $(document).ready(function () {
+            $('#date-range').daterangepicker({
+    opens: 'left',
+    drops: 'down',
+    autoApply: true,
+    locale: {
+      format: 'YYYY-MM-DD',
+      separator: ' To ',
+      applyLabel: 'Apply',
+      cancelLabel: 'Cancel',
+      fromLabel: 'From',
+      toLabel: 'To',
+      customRangeLabel: 'Custom',
+      daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+      monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      firstDay: 0
+    }
+  });
+  $('#date-range').change(function (){
+      $(this).val();
+      $("#daterange").val($(this).val())
+  })
+        }); -->
+    </script>
     
     <script type="text/javascript">
-        window.onload = function() {
-            $(function () {
-                $('#production-list-data').DataTable().ajax.reload(); 
-    var table = $('#production-list-data').DataTable({
-        processing: true,
-        serverSide: true,
-        destroy: true,
-        ajax: "<?php echo e(route('report.product.list')); ?>",
-        columns: [
-                        { data: 'DT_RowIndex', name: 'id',render:function(data){
-                            return numbertrans(data)
-                        }},
-                        {data: 'name', name: 'name'},
-                        {data: 'has_code', name: 'has_code'},
-                        {data: 'base_price', name: 'base_price'},
-                        {data: 'created_at', name: 'created_at'},
-                        {data: 'action', name: 'action', orderable: false, searchable: false},
+        $(document).ready(function() {
+           
+            var table = $('#production-list-data').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: '<?php echo e(route('report.product.list')); ?>',
+                    type: 'GET'
+                },
+    
+                columns: [
+                    { data: 'id' },
+                    { data: 'name' },
+                    { data: 'model' },
+                    { data: 'hsn_code' },
+                    { data: 'base_price' },
+                    { data: 'quantity' },
+                    { data: 'ticket_priority' },
+                    { data: 'ticket_status' },
+                    { data: 'order_status' },
+                    { data: 'created_at' },
+                    { data: 'action' }
+                ],
+                    bLengthChange: false,
+                    "bDestroy": true,
+                   
+                    dom: 'Bfrtip',
+                    buttons: [{
+                            extend: 'copyHtml5',
+                            text: '<i class="fa fa-copy"></i>',
+                            title: $("#header_title").text(),
+                            titleAttr: 'Copy',
+                            exportOptions: {
+                                columns: ':visible',
+                                columns: ':not(:last-child)',
+                            }
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fa fa-file-excel"></i>',
+                            titleAttr: 'Excel',
+                            title: $("#header_title").text(),
+                            margin: [10, 10, 10, 0],
+                            exportOptions: {
+                                columns: ':visible',
+                                columns: ':not(:last-child)',
+                            },
 
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-file-csv"></i>',
+                            titleAttr: 'CSV',
+                            exportOptions: {
+                                columns: ':visible',
+                                columns: ':not(:last-child)',
+                            }
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: '<i class="fa fa-file-pdf"></i>',
+                            title: $("#header_title").text(),
+                            titleAttr: 'PDF',
+                            exportOptions: {
+                                columns: ':visible',
+                                columns: ':not(:last-child)',
+                            },
+                            pageSize: 'A4',
+                            margin: [0, 0, 0, 0],
+                            alignment: 'center',
+                            header: true,
+
+                        },
+                        { 
+                            extend: 'print',
+                            text: '<i class="fa fa-print"></i>',
+                            titleAttr: 'Print',
+                            title: $("#header_title").text(),
+                            exportOptions: {
+                                columns: ':not(:last-child)',
+                            }
+                        },
+                        {
+                            extend: 'print',
+                            text: '<i class="ti ti-refresh"></i>',
+                            titleAttr: 'Refresh',
+                            title: $("#refresh-button").button(),
+                           
+                        }
                     ],
-        
+                    columnDefs: [{
+                        visible: false
+                    }],
+                    responsive: true,
+});
+//custom filter
+
+
+    // Event listener for the date range inputs to redraw the DataTable on change
+    $('#min-date, #max-date').on('change', function() {
+        var minDate = $('#min-date').val();
+        var maxDate = $('#max-date').val();
+
+        // Use the search() API to apply a custom filter
+        table.rows().every(function() {
+        var data = this.data();
+        console.log(data['id']); // Log data for each row
     });
-      
-  });
-};
+    table.rows().every(function() {
+                var data = this.data();
+                var createdAt = data['created_at']; // Adjust to your date column index
+                if(minDate != '' && maxDate != ''){
+                    if ((createdAt > minDate) && (createdAt < maxDate)) {
+                    $(this.node()).show();
+                   
+                } else {
+                    $(this.node()).hide();
+                }
+                }
+                
+            });
+        });
+    $('#priority_id').on('change', function() {
+        var priority = $('#priority_id').val();
+        var minDate = $('#min-date').val();
+        var maxDate = $('#max-date').val();
+        // var maxDate = $('#max-date').val();
+
+        // Use the search() API to apply a custom filter
+        table.rows().every(function() {
+        var data = this.data();
+        console.log(data['id']); // Log data for each row
+    });
+    table.rows().every(function() {
+                var data = this.data();
+                var priority_val = data['ticket_priority']; // Adjust to your date column index
+                var createdAt = data['created_at']; 
+                if(priority != ''){
+                    if ((priority_val == priority) ) {
+                    $(this.node()).show();
+                   
+                }else if(priority != '' && maxDate != '' && minDate != ''){
+                    if ((priority_val == priority && (createdAt > minDate) && (createdAt < maxDate)) ) {
+                        $(this.node()).show();
+                    }
+                }
+                 else {
+                    $(this.node()).hide();
+                }
+                }
+                
+            });
+        // table.column(9).search(minDate + '|' + maxDate, true, false).draw(); // Adjust the column index
+    });
+    $('#refresh-button').on('click', function() {
+            table.ajax.reload(); // Reload the data from the server
+            });
+ });
+ $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+        alert("SDfds")
+        var minDate = $('#min-date').val();
+        var maxDate = $('#max-date').val();
+        var createdAt = moment(data[3], 'YYYY-MM-DD'); // Adjust to your date format
+
+        var startDate = minDate ? moment(minDate, 'YYYY-MM-DD') : null;
+        var endDate = maxDate ? moment(maxDate, 'YYYY-MM-DD') : null;
+
+        if (
+            (startDate && !createdAt.isSameOrAfter(startDate)) ||
+            (endDate && !createdAt.isSameOrBefore(endDate))
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+);
+    
+
+
  
 </script>
     <script>
@@ -1521,19 +1725,17 @@ document.querySelector('#show-div15 a').addEventListener('click', function(event
                 <image id="return-button" class="mb-2" src="<?php echo e(asset('assets/images/Return-back.svg')); ?>"></image>
                 <h4></h4>
             </div>
-         <?php echo e(Form::open(array('url' => 'product/searching'))); ?>
-
+       
                <div class="row py-3">
                   
-                    <div class="col-sm-1 form-group">
-                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="<?php echo e(__('Search')); ?>" data-bs-toggle="tooltip" class="btn btn-danger text-danger form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='#ff3a6e';"></span>
-                      
+                  
+                   <div class="col-sm-2 form-group">
+                   <input type="text" id="min-date" class="form-control text-primary" name="min-date" placeholder="Select Star Date">
                    </div>
                    <div class="col-sm-2 form-group">
-                        <input type="text" class="form-control text-primary" name="date" value="" placeholder="Date" title="<?php echo e(__('Date')); ?>" data-bs-toggle="tooltip" id="datepicker" style="height: 45px;"><i class="bx bx-calendar text-primary" style="position: absolute;margin-left: 125px;margin-top: -28px;"></i>
-                       
+                        <input type="text" class="form-control text-primary" id="max-date" name="max-date" placeholder="Select End Date">
                    </div>
-                    <div class="col-sm-3 form-group">
+                    <div class="col-sm-2 form-group">
                        <!--<input type="text" class="form-control btn btn-warning"name="search" value="Assigned By">-->
                         <?php echo e(Form::select('user_id', $users,null, array('class' => 'form-control select2','id'=>'choices-multiple3', 'style' => 'height: 45px'))); ?>
 
@@ -1548,51 +1750,17 @@ document.querySelector('#show-div15 a').addEventListener('click', function(event
 
                    </div>
                    <div class="col-sm-2 form-group">
-                       <select class="form-control select" name="priority_id">
-                           <option value="0">Ticket Priority</option>
-                           <option value="1">Low</option>
-                           <option value="2">Medium</option>
-                           <option value="3">High</option>
+                       <select class="form-control select" name="priority_id" id="priority_id">
+                           <option value="Ticket Priority">Ticket Priority</option>
+                           <option value="Low">Low</option>
+                           <option value="Medium">Medium</option>
+                           <option value="High">High</option>
                            </select>
                    </div>
                   
             </div>
-             <?php echo e(Form::close()); ?>
-
-        <div class="col-sm-12">
-            <div class=" mt-2 <?php echo e(isset($_GET['category'])?'show':''); ?>" id="multiCollapseExample1">
-                
-                    <div class="card-body">
-                        <?php echo e(Form::open(['route' => ['productservice.index'], 'method' => 'GET', 'id' => 'product_service'])); ?>
-
-                        <div class="d-flex align-items-center justify-content-end">
-                            <div class="col-xl-3 col-lg-3 col-md-6">
-                                <div class="btn-box">
-                                    <?php echo e(Form::label('category', __('Category'),['class'=>'form-label'])); ?>
-
-                                    <?php echo e(Form::select('category', $category, null, ['class' => 'form-control select','id'=>'choices-multiple', 'required' => 'required'])); ?>
-
-                                </div>
-                            </div>
-                            <div class="col-auto float-end ms-2 mt-4">
-                                <a href="#" class="btn btn-sm btn-primary"
-                                   onclick="document.getElementById('product_service').submit(); return false;"
-                                   data-bs-toggle="tooltip" title="<?php echo e(__('apply')); ?>">
-                                    <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
-                                </a>
-                                <a href="<?php echo e(route('productservice.index')); ?>" class="btn btn-sm btn-danger" data-bs-toggle="tooltip"
-                                   title="<?php echo e(__('Reset')); ?>">
-                                    <span class="btn-inner--icon"><i class="ti ti-trash-off "></i></span>
-                                </a>
-                            </div>
-
-                        </div>
-                        <?php echo e(Form::close()); ?>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+            
+       
     </div>
                     
 
@@ -1601,21 +1769,23 @@ document.querySelector('#show-div15 a').addEventListener('click', function(event
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive">
-                        <table class="table datatable" id="production-list-data">
+                        <table class="display" id="production-list-data"  style="width:100%">
                             <thead class="thead-dark">
                             <tr>
-                                <th><?php echo e(__('No.')); ?></th>
+                            <th><?php echo e(__('No.')); ?></th>
                                 <th><?php echo e(__('Name')); ?></th>
-                                <th><?php echo e(__('Code')); ?></th>
-                                <th><?php echo e(__('Price')); ?></th>
+                                <th><?php echo e(__('Model')); ?></th>
+                                <th><?php echo e(__('Specification order')); ?></th>
+                                <th><?php echo e(__('Base Price')); ?></th>
+                                <th><?php echo e(__('Quantity')); ?></th>
+                                <th><?php echo e(__('Ticket Priority')); ?></th>
+                                <th><?php echo e(__('Ticket Status')); ?></th>
+                                <th><?php echo e(__('Order status')); ?></th>
                                 <th><?php echo e(__('Created At')); ?></th>
-                               
                                 <th><?php echo e(__('Action')); ?></th>
-                               
                             </tr>
                             </thead>
-                            <tbody>
-                            </tbody>
+                            
                         </table>
                     </div>
                 </div>

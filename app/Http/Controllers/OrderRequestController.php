@@ -16,6 +16,7 @@ use App\Models\StockReport;
 use App\Models\Transaction;
 use App\Models\Vender;
 use App\Models\User;
+use \Carbon\Carbon;
 use App\Models\Utility;
 use App\Models\WarehouseProduct;
 use App\Models\WarehouseTransfer;
@@ -38,10 +39,17 @@ class OrderRequestController extends Controller
         // $vender = Vender::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
         // $vender->prepend('Select Vendor', '');
         $orders = OrderRequest::all();
+        $emp     = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('id', '!=', \Auth::user()->id)->get();
+          
+            $users = User::where('type', '=', 'company')->get();
+           
+            $status = DB::table('status')->get()->pluck('name','id');
+            $status->prepend(__('Status'), '');
+            $date= '';
         // $purchases = Purchase::where('created_by', '=', \Auth::user()->creatorId())->with(['vender','category'])->get();
 
 
-        return view('orderrequest.index', compact('orders'));
+        return view('orderrequest.index', compact('orders', 'emp', 'users', 'status', 'date'));
 
 
     }
@@ -937,7 +945,138 @@ class OrderRequestController extends Controller
         }
     }
 
+// Searchin start
 
+ public function search(Request $request)
+    {  
+    //   dd($request->all());
+         $date = $request->daterange != ''?explode('To', $request->daterange):'';
+        //  dd($date);
+         $usr = \Auth::user();
+         $orders = '';  
+                
+             if ($request->status != '' && $request->created_by != '' && $date != '' && $request->approved_by != ''&& $request->priority != '') {
+                  
+                        $parsedStartDate = Carbon::parse($date[0])->format('Y-m-d');
+                        $parsedEndDate = Carbon::parse($date[1])->format('Y-m-d');
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.created_by', '=', $request->created_by)
+                        ->where('order_requests.approved_by', '=', $request->approved_by)
+                        ->where('order_requests.status', '=', $request->status)
+                        ->where('order_requests.priority', '=', $request->priority)
+                        ->whereBetween('order_requests.created_at', [$parsedStartDate , $parsedEndDate])
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                  
+                }
+                 elseif ($request->status != '' && $date != '' && $request->created_by != '') {
+                   
+                       $parsedStartDate = Carbon::parse($date[0])->format('Y-m-d');
+                       $parsedEndDate = Carbon::parse($date[1])->format('Y-m-d');
+                       $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.created_by', '=', $request->created_by)
+                        ->where('order_requests.approved_by', '=', $request->approved_by)
+                        ->where('order_requests.status', '=', $request->status)
+                        ->where('order_requests.priority', '=', $request->priority)
+                        ->whereBetween('order_requests.created_at', [$parsedStartDate , $parsedEndDate])
+                        
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                  
+                }
+                
+                 elseif ($request->status != '' && $date != '') {
+                     
+                      $parsedStartDate = Carbon::parse($date[0])->format('Y-m-d');
+                      $parsedEndDate = Carbon::parse($date[1])->format('Y-m-d');
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.status', '=', $request->status)
+                        ->whereBetween('order_requests.created_at', [$parsedStartDate , $parsedEndDate])
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                  
+                }
+                elseif ($request->status != '') {
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.status', '=', $request->status)
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                     
+                }
+                elseif ($request->approved_by != '') {
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.approved_by', '=', $request->approved_by)
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                  
+                }
+                elseif ($request->created_by != '') {
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->where('order_requests.created_by', '=', $request->created_by)
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                     
+                }
+                 elseif ($request->priority != '') {
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->where('order_requests.priority', '=', $request->priority)
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                   
+                }
+                 elseif ($date != '' ) {
+                          
+                      $parsedStartDate = Carbon::parse($date[0])->format('Y-m-d');
+                      $parsedEndDate = Carbon::parse($date[1])->format('Y-m-d');
+                        $orders     = OrderRequest::select('order_requests.*')
+                        ->join('users', 'order_requests.created_by', '=', 'users.id')
+                        ->join('material_stocks', 'order_requests.material_id', '=', 'material_stocks.id')
+                        ->whereBetween('order_requests.created_at', [$parsedStartDate , $parsedEndDate])
+                        ->orderBy('order_requests.id')
+                        ->paginate(10)->withQueryString();
+                  
+                }
+                else {
+          
+                    $orders     = OrderRequest::all();
+                        // ->join('user_leads', 'user_leads.lead_id', '=', 'leads.id')
+                        // ->where('user_leads.user_id', '=', $usr->id)
+                        // ->where('leads.pipeline_id', '=', $pipeline->id)
+                        // ->where('leads.user_id', '=', $request->user_id)
+                        // ->orderBy('leads.order')
+                        // ->paginate(10)->withQueryString();
+                }
+             
+            $date = $request->date;
+            
+            $key = '';
+            $emp     = User::where('created_by', '=', \Auth::user()->creatorId())->where('type', '!=', 'client')->where('id', '!=', \Auth::user()->id)->get();
+           
+            $users = User::where('type', '=', 'company')->get();
+           
+            $status = DB::table('status')->get()->pluck('name','id');
+           
+            $created_by = $request->created_by;
+            $approved_by = $request->approved_by;
+            return view('orderrequest.index', compact('orders', 'emp', 'users', 'date', 'key', 'created_by', 'approved_by'));
+            
+        
+    }
+
+//Searchin end
 
 
 
