@@ -320,6 +320,465 @@
             }
         });
 
+
+        document.querySelector('#show-div1 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('customer-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button1').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('customer-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div2 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('vendor-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button2').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('vendor-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div3 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('miscellaneous-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button3').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('miscellaneous-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div4 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('bank-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button4').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('bank-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+
+document.querySelector('#show-div5 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('cash-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button5').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('cash-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#show-div6 a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('return-orders-reports');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv = document.getElementById('finance-main');
+   
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+    
+        targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+});
+    document.querySelector('#return-button6').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+
+    console.log("dslkfsdlkf")
+
+    var targetDiv = document.getElementById('return-orders-reports');
+
+    if (targetDiv.style.display === 'none'){
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    var targetDiv2 = document.getElementById('finance-main');
+    
+    if (targetDiv2.style.display === 'none'){
+        targetDiv2.style.display = 'block';
+      
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv2.style.display = 'none';
+    }
+
+    
+   
+
+
+    
+});
+
+document.querySelector('#return-orders-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('return-orders-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
+
+document.querySelector('#cash-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('cash-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
+document.querySelector('#bank-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('bank-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
+document.querySelector('#miscellaneous-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('miscellaneous-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
+document.querySelector('#customer-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('customer-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
+document.querySelector('#vendor-transcation-show-div a').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default anchor behavior
+    console.log("dslkfsdlkf")
+   
+
+    var targetDiv = document.getElementById('vendor-transaction-list');
+    console.log(targetDiv)
+    if (targetDiv.style.display === 'none'){
+       
+        targetDiv.style.display = 'block';
+        // targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        targetDiv.style.display = 'none';
+    }
+
+    
+
+});
+
     </script>
 
 <script>
@@ -434,8 +893,11 @@
         @endphp
 
     </div>--}}
+   </div>
+   
 
-    <div class="row">
+
+    <div class="row mx-3 " id="finance-main">
          <div class="row" style="margin:-2px;">
                   
                     {{--<div class="col-sm-2 form-group">
@@ -485,28 +947,29 @@
                   
                   
             </div>
+
         <!--Sales Report    -->
         <div class="col-12">
             <div class="card">
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div1">
                             
-                         <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
+                         <a href="" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;--bs-btn-color: unset;">
                             Customer
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div2">
                          <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Vendor
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div3">
                             
                          <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Miscellaneous Operation
@@ -514,7 +977,7 @@
                          </a>
                         
                         </div> 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div4">
                          <a id="payment-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Bank
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -522,7 +985,7 @@
                         
                         </div> 
 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div5">
                          <a id="payment-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Cash
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -530,7 +993,7 @@
                         
                         </div> 
 
-                        <div class="col-sm-4 form-group">
+                        <div class="col-sm-4 form-group" id="show-div6">
                          <a id="payment-report" class="btn btn-outline-secondary btn-lg text-center" style="width:300px;">
                              Return Orders
                             <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
@@ -543,16 +1006,1903 @@
                 </div>
 
             </div>
+            
+                  
               
+                    </div>
+                    </div>
+                 <!-- customer reports-->    
+
+             <div class="row mx-1" id="customer-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button1" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Customer</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
                        
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="customer-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
 
 
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="customer-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
                        
                     </div>
                 </div>
 
-            </div>
-        </div>
+            </div>  
+                    </div>
+                    </div>
+                </div>
+                    </div>
+                    
+
+
+                    
+                                    <!-- vendor reports-->    
+
+             <div class="row mx-1" id="vendor-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button2" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Vendor</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                       
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="vendor-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="vendor-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
+                       
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+                </div>
+
+                    </div>
+
+
+               <!--Miscellaneous reports-->     
+             <div class="row mx-1" id="miscellaneous-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button3" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Miscellaneous </h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                       
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="miscellaneous-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="miscellaneous-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
+                       
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+                </div>
+
+            </div>  
+                 
+
+              
+              <!--bank Reports-->      
+             <div class="row mx-1" id="bank-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button4" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Bank</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                       
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="bank-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="bank-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
+                       
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+                </div>
+
+            </div>  
+                    
+
+                    
+             <div class="row mx-1" id="cash-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button5" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Cash</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                       
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="cash-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="cash-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
+                       
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+                </div>
+
+            </div>  
+
+            <!--return-order-reports-->
+                    
+             <div class="row mx-1" id="return-orders-reports" style="display:none;"> 
+                  <div class="card">
+                    <div class="card-header">
+                    <h4>  <image id="return-button6" class="mb-2 mr-3" src="{{ asset('assets/images/Return-back.svg') }}"></image>
+              Return Orders</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                    {{--<div class="col-sm-2 form-group">
+                         <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('quotation_filter').submit(); return false;" data-bs-toggle="tooltip" title="" data-original-title="apply" data-bs-original-title="Apply" style="padding: 10px 15px 10px 15px;float: inline-end;">
+                                            <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
+                                            </a>
+                        <span style="float: inline-end;"><i class="ti ti-search" style="position: absolute;margin-left: 14px;margin-top: 12px;z-index: 10;color: white;"></i><input type="submit" title="{{__('Search')}}" data-bs-toggle="tooltip" class="btn btn-primary text-primary form-control" style="border: none;width: 40px;" onmouseover="this.style.backgroundColor='var(--color-customColor)';'"></span>
+                      
+                   </div>--}}
+
+                 
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('From Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepicker" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                       
+                    <div class="col-sm-3 form-group" style="position: relative;">
+                         {{Form::label('period',__('To Date'))}}
+                        <input type="text" class="form-control text-primary" name="date" value="Date" placeholder="Date" title="{{__('Date')}}" data-bs-toggle="tooltip" id="datepickerTo" style="border-radius: 15px; padding-right: 30px;font-weight: bold;">
+                        <i class="bx bx-calendar text-primary" id="calendar_icon1" style="position: absolute; right: 26px; top: 60%; transform: translateY(-50%);cursor:pointer"></i>
+                    </div>
+                   
+                    <div class="col-sm-3 form-group">
+                      {{Form::label('period',__('Period'))}}
+                      <select class="form-control text-primary" id="monthSelect" style="border-radius: 15px;">
+                      <option value="">Select Month</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                       </select>
+                   </div>
+                    <div class="col-sm-3 form-group">
+                         {{Form::label('period',__('Period'))}}
+                         <select class="form-control text-primary" id="yearSelect" style="border-radius: 15px;">Select Year</select>
+
+                   </div> 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group" id="return-orders-transcation-show-div">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Customer Transaction Entry
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Invoice
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Transaction Reports
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+
+                        
+                       
+                       
+                       
+                    </div>
+                    </div>
+                    </div>
+
+
+                    <div class="row mx-1" id="return-orders-transaction-list" style="display:none;" > 
+                  <div class="card" >
+                    <div class="card-header">
+                    <h4> 
+              Customer Receive / Payment Entry</h4>
+               
+                    </div>
+         <div class="row py-4">
+                 
+                 
+                  
+                  
+          
+        <!--Sales Report    -->
+        <div class="col-12">
+            <div class="card pt-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 form-group">
+                            
+                         <a  class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                            Choose a Transaction Type
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                         <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                           Choose the Payment Method
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+                        <div class="col-sm-4 form-group">
+                            
+                         <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                            Customer Name
+                            <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                         </a>
+                        
+                        </div> 
+
+                        <div class="col-sm-4 form-group">
+                            
+                            <a href="{{ route('report.lead') }}" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;--bs-btn-color: unset;">
+                              Current Due
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                            <a id="invoice-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                               Amount
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                           <div class="col-sm-4 form-group">
+                               
+                            <a id="product-report" class="btn btn-outline-secondary btn-lg text-center" style="width:290px;">
+                              Note
+                               <i class="ti ti-chevron-right" style="float: inline-end;"></i>  
+                            </a>
+                           
+                           </div> 
+                    </div>
+                    </div>
+                    </div>
+
+                    <div class="">
+                        <div class="card-header">
+                            <h4>
+                            Customer Transaction List
+                            </h4>
+                        </div>
+                        <table>
+                            <thead class="card-header bg-gradient bg-light">
+                               <tr>
+                                <th>S.No</th>
+                                <th>
+                                    Transaction Code
+                                </th>
+                                <th>Customer Name </th>
+                                <th>Transaction Type </th>
+                                <th>Transaction Method </th>
+                                <th>Bank Acc Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>01</td>
+                                    <td>BH342</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Recive</td>
+                                    <td>Cash</td>
+                                    <td>Piyush Joshi</td>
+                                    <td>Amount</td>
+                                    <td>Date</td>
+
+                                </tr>
+
+                             </tbody>
+                        </table>
+                    </div>
+                    </div>
+                       
+                       
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+                </div>
+
+            </div>  
+                    </div>
+                    </div>
+
+                       
+                   
+
         <!--End seles report-->
        
 <!--Vendor report-->
